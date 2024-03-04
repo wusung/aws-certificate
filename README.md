@@ -1,9 +1,9 @@
 # AWS Ceritificate
 
 ## Table of Contents
-1. [Experience](#experience)
-2. [Exam Resources](#exam)
-3. [Test Preparation](#test)
+- [Experience](#experience)
+- [Exam Resources](#exam)
+- [Test Preparation](#test)
 
 ## AWS Certified Solutions Architect
 
