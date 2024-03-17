@@ -17,7 +17,7 @@
 - [兩個月考取四張 AWS 認證心得 – yulin's site](https://yulin.dev/2023/06/20/%E5%85%A9%E5%80%8B%E6%9C%88%E8%80%83%E5%8F%96%E5%9B%9B%E5%BC%B5-aws-%E8%AA%8D%E8%AD%89%E5%BF%83%E5%BE%97/)
 - [AWS-SAA-C03认证——之基础知识扫盲_aws saa c03-CSDN博客](https://blog.csdn.net/weter_drop/article/details/135570957?ops_request_misc=&request_id=&biz_id=102&utm_term=saa%20c03&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-135570957.nonecase&spm=1018.2226.3001.4187)
 - [三周速通AWS Certified Solutions Architect - Associate（SAA-C03)经验分享_aws saa-c03-CSDN博客](https://blog.csdn.net/qq_32424059/article/details/130826306?ops_request_misc=&request_id=&biz_id=102&utm_term=saa%20c03&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-130826306.nonecase&spm=1018.2226.3001.4187)
-- 
+
 
 ### Exam
 - [AWS-Certified-Solutions-Architect-Associate_Sample-Questions.pdf](https://d1.awsstatic.com/zh_TW/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Sample-Questions.pdf?ref=weii.dev)
@@ -29,7 +29,6 @@
 - [AWS SAA-C03考试知识点整理_aws saa c03考试技巧-CSDN博客](https://blog.csdn.net/zichen7055/article/details/133950211?ops_request_misc=&request_id=&biz_id=102&utm_term=saa%20c03&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-133950211.nonecase&spm=1018.2226.3001.4187)
 - [AWS-Certified-Solutions-Architect-Associate_Exam-Guide_C03.pdf](https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Exam-Guide_C03.pdf)
 - [Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers: ⛳️ PASS: Amazon Web Services Certified (AWS Certified) Solutions Architect Associate (SAA-C03) by learning based on our Questions & Answers (Q&A) Practice Tests Exams.](https://github.com/Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers)
-- 
 
 
 ### Test
@@ -40,5 +39,15 @@
 
 
 ### Whitebook
+
+#### ETL
 - [Analyze Apache Parquet optimized data using Amazon Kinesis Data Firehose, Amazon Athena, and Amazon Redshift | AWS Big Data Blog](https://aws.amazon.com/blogs/big-data/analyzing-apache-parquet-optimized-data-using-amazon-kinesis-data-firehose-amazon-athena-and-amazon-redshift/)
-- 
+
+#### VPC
+- [Network-to-Amazon VPC connectivity options - Amazon Virtual Private Cloud Connectivity Options](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html)
+
+#### EC2
+- [Dedicated Instances - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html)
+
+#### Key 
+- [AWS KMS concepts - AWS Key Management Service](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
