@@ -37,4 +37,8 @@
 - [[AWS]SAA證照 自修考試心得 - Steven玄](https://stevenjhu.com/2022/09/12/awssaa%E8%AD%89%E7%85%A7-%E8%87%AA%E4%BF%AE%E8%80%83%E8%A9%A6%E5%BF%83%E5%BE%97/)
 - [AWS最新SAA-C02考试认证题库（真题）_AWSsapco2真题资源-CSDN文库](https://download.csdn.net/download/wangxin311/12455650)
 - [AWS-SAA考试认证-学习资料中文_AWS认证开发人员練習资源-CSDN文库](https://download.csdn.net/download/whl826661099/86271224?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-download-2%7Edefault%7ECTRLIST%7EPaid-1-86271224-blog-135570957.235%5Ev43%5Epc_blog_bottom_relevance_base3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-download-2%7Edefault%7ECTRLIST%7EPaid-1-86271224-blog-135570957.235%5Ev43%5Epc_blog_bottom_relevance_base3&utm_relevant_index=1)
+
+
+### Whitebook
+- [Analyze Apache Parquet optimized data using Amazon Kinesis Data Firehose, Amazon Athena, and Amazon Redshift | AWS Big Data Blog](https://aws.amazon.com/blogs/big-data/analyzing-apache-parquet-optimized-data-using-amazon-kinesis-data-firehose-amazon-athena-and-amazon-redshift/)
 - 
