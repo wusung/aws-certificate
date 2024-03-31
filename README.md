@@ -7,8 +7,8 @@
 
 ## AWS Certified Solutions Architect
 
-### Test 
-- [ ] [ExamTopics - AWS Certified Solutions Architect - Associate SAA-C03](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/) ![100%](https://progress-bar.dev/100)
+### Execises
+- ![100%](https://progress-bar.dev/100) [ExamTopics - AWS Certified Solutions Architect - Associate SAA-C03](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/)
 - [ ] [AWS-SAA-C03（分享版） - Google Docs](https://docs.google.com/document/d/1w3MAVLzJeUG-W3fA2fOWDu4HF_HFD9bV_hnz9VSPrvQ/edit) ![0%](https://progress-bar.dev/0)
 - [ ] [AWS-SAA-C03认证——之基础知识扫盲_it小茶出的aws saa教程-CSDN博客](https://blog.csdn.net/weter_drop/article/details/135570957) ![0%](https://progress-bar.dev/0)
 - [ ] [tlf985417-CSDN博客](https://blog.csdn.net/tlf985417?type=blog) ![0%](https://progress-bar.dev/0)
