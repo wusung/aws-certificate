@@ -9,10 +9,12 @@
 
 ### Execises
 - ![100%](https://progress-bar.dev/100) [ExamTopics - AWS Certified Solutions Architect - Associate SAA-C03](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/)
-- [ ] [AWS-SAA-C03（分享版） - Google Docs](https://docs.google.com/document/d/1w3MAVLzJeUG-W3fA2fOWDu4HF_HFD9bV_hnz9VSPrvQ/edit) ![0%](https://progress-bar.dev/0)
-- [ ] [AWS-SAA-C03认证——之基础知识扫盲_it小茶出的aws saa教程-CSDN博客](https://blog.csdn.net/weter_drop/article/details/135570957) ![0%](https://progress-bar.dev/0)
-- [ ] [tlf985417-CSDN博客](https://blog.csdn.net/tlf985417?type=blog) ![0%](https://progress-bar.dev/0)
-- [ ] [AWS Certified Security - Specialty 準備心得分享 - 駭客貓咪 HackerCat](https://hackercat.org/aws/aws-certified-security-specialty-experience) ![50%](https://progress-bar.dev/50)
+- ![0%](https://progress-bar.dev/0) [AWS-SAA-C03（分享版） - Google Docs](https://docs.google.com/document/d/1w3MAVLzJeUG-W3fA2fOWDu4HF_HFD9bV_hnz9VSPrvQ/edit)
+- ![0%](https://progress-bar.dev/0) [AWS-SAA-C03认证——之基础知识扫盲_it小茶出的aws saa教程-CSDN博客](https://blog.csdn.net/weter_drop/article/details/135570957)
+- ![0%](https://progress-bar.dev/0) [tlf985417-CSDN博客](https://blog.csdn.net/tlf985417?type=blog) ![0%](https://progress-bar.dev/0)
+- ![50%](https://progress-bar.dev/50)[AWS Certified Security - Specialty 準備心得分享 - 駭客貓咪 HackerCat](https://hackercat.org/aws/aws-certified-security-specialty-experience)
+- 
+
 
 ### Experience
 - [AWS Solution Architect Associate心得-考試篇｜方格子 vocus](https://vocus.cc/article/645b5326fd897800013bf84b)
