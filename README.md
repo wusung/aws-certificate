@@ -1,11 +1,23 @@
 # AWS Ceritificate
 
 ## Table of Contents
+- [Basic](#basic)
+- [Courses](#courses)
 - [Experience](#experience)
 - [Exam Resources](#exam)
 - [Test Preparation](#test)
 
 ## AWS Certified Solutions Architect
+
+### Basic
+- [AWS_certification_paths.pdf](https://d1.awsstatic.com/training-and-certification/docs/AWS_certification_paths.pdf)
+
+
+### Courses
+- [Ultimate AWS Certified Solutions Architect Associate (SAA) | Udemy](https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/?couponCode=KEEPLEARNING)
+- [AWS Certified Solutions Architect - Associate (SAA-C03) | Pluralsight](https://www.pluralsight.com/paths/aws-certified-solutions-architect-associate-saa-c03)
+- [AWS Certified Solutions Architect - Associate (SAA-C03)](https://www.pluralsight.com/cloud-guru/courses/aws-certified-solutions-architect-associate-saa-c03)
+
 
 ### Execises
 - ![100%](https://progress-bar.dev/100) [ExamTopics - AWS Certified Solutions Architect - Associate SAA-C03](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/)
@@ -17,8 +29,8 @@
 - ![0%](https://progress-bar.dev/0)  [AWS SAA-C03考试知识点整理_aws saa c03考试技巧-CSDN博客](https://blog.csdn.net/zichen7055/article/details/133950211)
 - ![0%](https://progress-bar.dev/0)  [【免费】AWS-SAA-C03(20230928)助理架构师英文-认证考试题库.pdf：最新更新，引领你走向成功！_AWSSAA03试题资源-CSDN文库](https://download.csdn.net/download/baidu_31405631/88381422?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522171192784916800227428937%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fdownload.%2522%257D&request_id=171192784916800227428937&biz_id=1&utm_medium=distribute.pc_search_result.none-task-download-2~download~first_rank_ecpm_v1~rank_v31_ecpm-1-88381422-null-null.269^v2^control&utm_term=AWS%20SAA-C03&spm=1018.2226.3001.4451.2)
 - ![0%](https://progress-bar.dev/0)  [AWSCertifiedSolutionsArchitect-AssociateSAA-C03Exam资源-CSDN文库](https://download.csdn.net/download/qq_23930765/87444939)
-
-
+- [AWS Certified Security - Specialty [Video]](https://www.oreilly.com/library/view/aws-certified-security/9780135771990/)
+- 
 
 ### Experience
 - [AWS Solution Architect Associate心得-考試篇｜方格子 vocus](https://vocus.cc/article/645b5326fd897800013bf84b)
@@ -30,9 +42,13 @@
 - [兩個月考取四張 AWS 認證心得 – yulin's site](https://yulin.dev/2023/06/20/%E5%85%A9%E5%80%8B%E6%9C%88%E8%80%83%E5%8F%96%E5%9B%9B%E5%BC%B5-aws-%E8%AA%8D%E8%AD%89%E5%BF%83%E5%BE%97/)
 - [AWS-SAA-C03认证——之基础知识扫盲_aws saa c03-CSDN博客](https://blog.csdn.net/weter_drop/article/details/135570957?ops_request_misc=&request_id=&biz_id=102&utm_term=saa%20c03&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-135570957.nonecase&spm=1018.2226.3001.4187)
 - [三周速通AWS Certified Solutions Architect - Associate（SAA-C03)经验分享_aws saa-c03-CSDN博客](https://blog.csdn.net/qq_32424059/article/details/130826306?ops_request_misc=&request_id=&biz_id=102&utm_term=saa%20c03&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-130826306.nonecase&spm=1018.2226.3001.4187)
-
+- [AWS Cloud Practitioner一周快速备考 - 知乎](https://zhuanlan.zhihu.com/p/679121825)
+- [How has passing the AWS certs effected your career? : r/AWSCertifications](https://www.reddit.com/r/AWSCertifications/comments/1bfe2ft/how_has_passing_the_aws_certs_effected_your_career/)
+- [AWS Certified Security - Specialty 準備心得分享 - 駭客貓咪 HackerCat](https://hackercat.org/aws/aws-certified-security-specialty-experience)
+- 
 
 ### Exam
+- [Where can I get AWS Certified Solutions Architect exam dumps or types of questions? What are all the topics to prepare for? - Quora](https://www.quora.com/Where-can-I-get-AWS-Certified-Solutions-Architect-exam-dumps-or-types-of-questions-What-are-all-the-topics-to-prepare-for)
 - [AWS-Certified-Solutions-Architect-Associate_Sample-Questions.pdf](https://d1.awsstatic.com/zh_TW/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Sample-Questions.pdf?ref=weii.dev)
 - [AWS Skill Builder](https://explore.skillbuilder.aws/learn/course/external/view/elearning/13595/aws-certified-solutions-architect-associate-official-practice-question-set-saa-c03-traditional-chinese?ref=weii.dev)
 - [AWS Certified Solutions Architect - Associate SAA-C03 Exam - Free Exam Q&As, Page 1 | ExamTopics](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/)
@@ -42,6 +58,8 @@
 - [AWS SAA-C03考试知识点整理_aws saa c03考试技巧-CSDN博客](https://blog.csdn.net/zichen7055/article/details/133950211?ops_request_misc=&request_id=&biz_id=102&utm_term=saa%20c03&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-133950211.nonecase&spm=1018.2226.3001.4187)
 - [AWS-Certified-Solutions-Architect-Associate_Exam-Guide_C03.pdf](https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Exam-Guide_C03.pdf)
 - [Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers: ⛳️ PASS: Amazon Web Services Certified (AWS Certified) Solutions Architect Associate (SAA-C03) by learning based on our Questions & Answers (Q&A) Practice Tests Exams.](https://github.com/Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers)
+- [AWS Solutions Architect Associate (SAA-C03) Exam Questions 2024](https://skillcertpro.com/product/aws-solutions-architect-associate-saa-c03/)
+
 
 
 ### Test
