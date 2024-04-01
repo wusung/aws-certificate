@@ -11,9 +11,9 @@
 - ![100%](https://progress-bar.dev/100) [ExamTopics - AWS Certified Solutions Architect - Associate SAA-C03](https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/)
 - ![0%](https://progress-bar.dev/0) [AWS-SAA-C03（分享版） - Google Docs](https://docs.google.com/document/d/1w3MAVLzJeUG-W3fA2fOWDu4HF_HFD9bV_hnz9VSPrvQ/edit)
 - ![0%](https://progress-bar.dev/0) [AWS-SAA-C03认证——之基础知识扫盲_it小茶出的aws saa教程-CSDN博客](https://blog.csdn.net/weter_drop/article/details/135570957)
-- ![0%](https://progress-bar.dev/0) [tlf985417-CSDN博客](https://blog.csdn.net/tlf985417?type=blog) ![0%](https://progress-bar.dev/0)
+- ![0%](https://progress-bar.dev/0) [tlf985417-CSDN博客](https://blog.csdn.net/tlf985417?type=blog)
 - ![50%](https://progress-bar.dev/50) [AWS Certified Security - Specialty 準備心得分享 - 駭客貓咪 HackerCat](https://hackercat.org/aws/aws-certified-security-specialty-experience)
-- ![0%](https://progress-bar.dev/0) [Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers: ⛳️ PASS: Amazon Web Services Certified (AWS Certified) Solutions Architect Associate (SAA-C03) by learning based on our Questions & Answers (Q&A) Practice Tests Exams.](https://github.com/Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers?tab=readme-ov-file#which-set-of-amazon-s3-features-helps-to-prevent-and-recover-from-accidental-data-loss)
+- ![0%](https://progress-bar.dev/0) [Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers: ⛳️ PASS: Amazon Web Services Certified (AWS Certified) Solutions Architect Associate (SAA-C03) by learning based on our Questions & Answers (Q&A) Practice Tests Exams.](https://github.com/Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers)
 
 
 ### Experience
