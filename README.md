@@ -14,7 +14,7 @@
 - ![0%](https://progress-bar.dev/0) [tlf985417-CSDN博客](https://blog.csdn.net/tlf985417?type=blog)
 - ![50%](https://progress-bar.dev/50) [AWS Certified Security - Specialty 準備心得分享 - 駭客貓咪 HackerCat](https://hackercat.org/aws/aws-certified-security-specialty-experience)
 - ![0%](https://progress-bar.dev/0) [Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers: ⛳️ PASS: Amazon Web Services Certified (AWS Certified) Solutions Architect Associate (SAA-C03) by learning based on our Questions & Answers (Q&A) Practice Tests Exams.](https://github.com/Ditectrev/AWS-Certified-Solutions-Architect-Associate-SAA-C03-Practice-Tests-Exams-Questions-Answers)
-
+- ![0%](https://progress-bar.dev/0)  [AWS SAA-C03考试知识点整理_aws saa c03考试技巧-CSDN博客](https://blog.csdn.net/zichen7055/article/details/133950211)
 
 ### Experience
 - [AWS Solution Architect Associate心得-考試篇｜方格子 vocus](https://vocus.cc/article/645b5326fd897800013bf84b)
