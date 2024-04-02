@@ -32,7 +32,7 @@
 - ![0%](https://progress-bar.dev/0)  [【免费】AWS-SAA-C03(20230928)助理架构师英文-认证考试题库.pdf：最新更新，引领你走向成功！_AWSSAA03试题资源-CSDN文库](https://download.csdn.net/download/baidu_31405631/88381422?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522171192784916800227428937%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fdownload.%2522%257D&request_id=171192784916800227428937&biz_id=1&utm_medium=distribute.pc_search_result.none-task-download-2~download~first_rank_ecpm_v1~rank_v31_ecpm-1-88381422-null-null.269^v2^control&utm_term=AWS%20SAA-C03&spm=1018.2226.3001.4451.2)
 - ![0%](https://progress-bar.dev/0)  [AWSCertifiedSolutionsArchitect-AssociateSAA-C03Exam资源-CSDN文库](https://download.csdn.net/download/qq_23930765/87444939)
 - [AWS Certified Security - Specialty [Video]](https://www.oreilly.com/library/view/aws-certified-security/9780135771990/)
-- ![10%](https://progress-bar.dev/10) [AWS-SAA-C03(20230928)助理架构师英文-认证考试题库.pdf：最新更新，引领你走向成功！](./assets/exam-aws-certified-solutions-architect-associate-saa-c03-free50-c.pdf)
+- ![20%](https://progress-bar.dev/20) [AWS-SAA-C03(20230928)助理架构师英文-认证考试题库.pdf：最新更新，引领你走向成功！](./assets/exam-aws-certified-solutions-architect-associate-saa-c03-free50-c.pdf)
 
 ### Experience
 - [AWS Solution Architect Associate心得-考試篇｜方格子 vocus](https://vocus.cc/article/645b5326fd897800013bf84b)
