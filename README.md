@@ -85,5 +85,3 @@
 #### Key 
 - [AWS KMS concepts - AWS Key Management Service](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
 
-
-
