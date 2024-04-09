@@ -265,3 +265,86 @@ If things don't work...
   - An instance cannot be hibernated more than 60 days.
 
 
+### EC2 Hibernate Hands on
+
+- EC2 Hibernate
+  - Enable hibernation as an additinal stop behavior
+  - Ensure hinernate is working
+    - Hibernate the instace
+       - Use `uptime` to check hinernation
+
+
+### EC2 Nitro
+
+
+- EC2 Nitro
+  - Underlying Platform for the next neneration of EC2 instances
+  - New virtualization technology
+  - Allow for better performance
+    - Better networking options(enhanced networking, HPC, IPV6)
+    - Higher Speed EBS (64000 EBS IOPS - max 32000 on no-Nitro)
+  - Better underlying security
+  - Instance types example:
+    - Virtualized: 
+    - Bare metal:
+- EC2 - Understanding vCPU
+  - Multiple threads can run on one CPU (multithreading)
+  - Each treahd  is represented as virtual CPU (vCPU)
+  - Example: m5.2xlarge
+    - 4 CPU
+    - 2 threads per CPU
+    - => 8 vCPU in total
+    ![alt text](image-7.png)
+- EC2 - Optimzing CPU options
+  - EC2 isntances come with a combination of RAM and vCPU
+  - But in some cases, you may want to change the vCPU options:
+    - # of CPU cores: you can decreast it (helpful if your need high RAM and low number of CPU) - to decrease licensing costs
+    - # of threads per core: disable multithreading to have 1 thread per CPU - helpful for high performance computing (HPC) workloads
+  - Only speficied during instance launce
+  ![alt text](image-8.png)
+
+- EC2 - Capacity Reservations
+  - Capicity Reservations ensure your have EC2 Capacity when needed
+  - Manual or planned end-date for the revervation
+  - No need for 1 or 3-year commitment
+  - Capicity access is immediate, you get billed as soon as it starts
+  - Specify
+    - The AZ in which to to rerve the capcity (only one)
+    - The number of instances for which to reserve capacity
+    - The instance attributes, including the instance types, tenancy and platform/OS
+  - Combine with Reserved Instaces and Savings Plans to do cost saving
+  ![alt text](image-9.png)
+
+- EC2 Instance Storage Section
+  - What's EBS Volume
+    - is a network drive you can attach to your instances while they run
+    - allows your instances to persists data, even after their termination
+    - can only be mounted to one instance at a time(at the CCP level)
+    - The are bound to specific AZ
+    - Analogy: Think of them as a 'network USB stick'
+  - EBS Volume
+    - It's a network drive (not a physical drive)
+      - It uses the network to communicate the instance, which means there might be a bit of latency
+      - It can be deatched from an EC2 instacne and attached to another one quickly
+    - It's locked to an AZ
+      - An EBS Volume in us-east-1a cannot be attached to us-east-1b
+      - To move a volume across, you first need to snapshot it
+    - Have a provisioned capacity (size in GBs, and IOPS)
+      - You get billed for all the provisioned capacity
+  - EC2 Volume - Example
+    ![alt text](image-10.png)
+  - EBS - Delete on termination attribute
+    - Controls the EBS behaviour when an EC2 instance terminates
+      - By default, the root EBS volume is deleted
+      - By default, any ohter attached EBS vloume is not deleted
+    - This can be controlled by the AWS console/AWS CLI
+    - Use case: persrve root volume when instance is terminated
+    ![alt text](image-11.png)
+   - EBS Volume Hands on
+    - Create a volume
+    - Attach the volume to an existed EC2 instance
+    - Create the new EC2 instance from the volume
+    - Delete the volume
+
+
+
