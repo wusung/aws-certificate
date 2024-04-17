@@ -2,7 +2,6 @@
 
 ## IAM
 
-
 ## EC2
 
 - Instance Type
@@ -17,7 +16,7 @@
 - Security Group
   Type
   Protocol
-  Source:  0.0.0.0/0 anywhere
+  Source: 0.0.0.0/0 anywhere
 - Key Pair
   The key file is only show once in this step.
 - Public IPv4 Address
@@ -57,7 +56,7 @@
 - Measuring Instance Performance
 
 
-## Security Groups
+### Security Groups
 
 - Security Groups only contain allow rules
 - Security Groups rules can reference by IP or by security group
@@ -74,7 +73,7 @@
 ### Good to know
 
 - Can be attched to multiple instances
-- Locked down to a regin/VPC combination
+- Locked down to a region/VPC combination
 - Does live 'outsie' the EC2 - if traffice is blocked the EC2 isntacne won't seet it
 - It's good to maintain one separate security group for SSH access
 - If your application is not accessible (timeout), then it's a security group issue.
@@ -108,7 +107,6 @@ If things don't work...
 - Re-watch the lecture. You may have missed someting
 - Read the troubleshooting guide
 - Try EC2 Instance Connect
-
 
 
 ### IAM Role for EC2 Instance
@@ -149,7 +147,7 @@ If things don't work...
   - More expensive
   - Useful for software that have complicated licensing model(BYOL - Bring Tour Own License)
   - Or for companies that have string regulatory or compliance needs
-- EC2 Dedicated Instacnes
+- EC2 Dedicated Instances
   - Instances running on hardware that's dedicated to your
   - May share HW with other isntances in same account
   - No control over instance placement (can move hw after stop/start)
@@ -172,13 +170,13 @@ If things don't work...
   - Not great for critical jobs or databases
 
 - EC2 Spot Instsances Pricing
-  [](https://.../ec2sp/v1/spot/home?region=us-east-1)
+  [Pricing](https://.../ec2sp/v1/spot/home?region=us-east-1)
 
 - How to terminate Spot Instances
   ![alt text](image-3.png)
 
 - Spot Fleets
-  - Spot Fleets = set of spot Instances + (optional) On-Demond Instances
+  - Spot Fleets = set of Spot Instances + (optional) On-Demond Instances
   - The Spot Fleet will try to meet the target capacity with price constraints
     - Define possible launch pools: instance type (m5.large), OS, Availability Zone
     - Can have multiple launch pools, so that the fleet can choose
@@ -192,7 +190,6 @@ If things don't work...
 ### EC2 Spot Instance Launch Types Hands On
 
 - [045 EC2 Instances Launch Types Hands On_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1wR4y1F7YM/?p=40&spm_id_from=pageDriver&vd_source=b12b77fc1ee1a9f1bd40e7d3802aa43c)
-
 
 
 ### Private vs Public IP (IPv4)
@@ -232,7 +229,7 @@ If things don't work...
     - Primary private IPv4, one ore more secondary IPv4
     - One Ealstic (IPv4) per private IPv4
     - One Public IPv4
-    - Onre ore more security groups
+    - Onre are more security groups
     - A MAC address
   - You can create ENI independently and attach them on the fly (move them) on EC2 instances for failover
   - Bound to a specific AZ
@@ -269,13 +266,12 @@ If things don't work...
 
 - EC2 Hibernate
   - Enable hibernation as an additinal stop behavior
-  - Ensure hinernate is working
+  - Ensure hibernate is working
     - Hibernate the instace
-       - Use `uptime` to check hinernation
+      - Use `uptime` to check hibernation
 
 
 ### EC2 Nitro
-
 
 - EC2 Nitro
   - Underlying Platform for the next neneration of EC2 instances
@@ -298,16 +294,16 @@ If things don't work...
 - EC2 - Optimzing CPU options
   - EC2 isntances come with a combination of RAM and vCPU
   - But in some cases, you may want to change the vCPU options:
-    - # of CPU cores: you can decreast it (helpful if your need high RAM and low number of CPU) - to decrease licensing costs
-    - # of threads per core: disable multithreading to have 1 thread per CPU - helpful for high performance computing (HPC) workloads
-  - Only speficied during instance launce
+    - \# of CPU cores: you can decreast it (helpful if your need high RAM and low number of CPU) - to decrease licensing costs
+    - \# of threads pe00000000000r core: disable multithreading to have 1 thread per CPU - helpful for high performance computing (HPC) workloads
+  - Only speficfied during instance launch
   ![alt text](image-8.png)
 
 - EC2 - Capacity Reservations
-  - Capicity Reservations ensure your have EC2 Capacity when needed
+  - Capacity Reservations ensure your have EC2 Capacity when needed
   - Manual or planned end-date for the revervation
   - No need for 1 or 3-year commitment
-  - Capicity access is immediate, you get billed as soon as it starts
+  - Capacity access is immediate, you get billed as soon as it starts
   - Specify
     - The AZ in which to to rerve the capcity (only one)
     - The number of instances for which to reserve capacity
@@ -315,6 +311,7 @@ If things don't work...
   - Combine with Reserved Instaces and Savings Plans to do cost saving
   ![alt text](image-9.png)
 
+## EC2 Instance Storage
 - EC2 Instance Storage Section
   - What's EBS Volume
     - is a network drive you can attach to your instances while they run
@@ -346,7 +343,7 @@ If things don't work...
     - Create the new EC2 instance from the volume
     - Delete the volume
 
-
+## AMI
 - AMI Overview
   - AMI = Amazson Machine Image
   - AMI are a customization of EC2 instance
@@ -370,6 +367,8 @@ If things don't work...
   - Launch an EC2 instance
   - Create an AMI image from an EC2 Instance
 
+## EC2 Instance Store
+
 - EC2 Instance Store
   - EBS volumes are network drives with good but "limited" performance
   - If you need a high-performance hardware disk, use EC2 Instance Store
@@ -382,6 +381,7 @@ If things don't work...
 - Load EC2 Instance Store
   ![alt text](image-13.png)
 
+## EBS
 - EBS Volume Types
   - EBS Volumes come in 6 types
     - gp2 / gp3 (SSD)
@@ -389,7 +389,7 @@ If things don't work...
     - st1 (HDD)
     - sc1 (HDD)
   - EBS Volumes are characterized in Size | Throughput | IOPS (I/O Ops Per Sec)
-  - Wnen in doubt always consult the AWS documentation - it's good
+  - When in doubt always consult the AWS documentation - it's good
   - Only gp2/gp3 and io1/io2 can be used as boot volumes
  
 - EBS Volume Types Use cases
@@ -436,7 +436,6 @@ If things don't work...
     - Applications must manage concurrent write operations
   - Must us a file system that's clsuter-sware (not XFS, EX4, etc...)
 
-
 - EBS Encryption
   - When you create an encrypted EBS volume, you get the following
     - Data a rest is encrypted inside the volume
@@ -444,7 +443,7 @@ If things don't work...
     - All snapshot are encrypted
     - All volumes created from the snapshot
   - Encryption and decryption are handled trasparently (you have nothing to do)
-  - Encryption has minimal impack on latency
+  - Encryption has minimal impact on latency
   - EBS Encryption leverages keys from KMS (AES-256)
   - Copying an unencrypted snapshot allows encryption
   - Snapshots of encrypted volumes are encrypted
@@ -455,12 +454,11 @@ If things don't work...
   - Create new EBS volume from the snapshot (the volume will also be encrypted)
   - Now you can attach the encrypted volume to the original instance
 
-
-
+## EFS
 - EFS - Elastic File System
   - Managed NFS (network file system) that can be mounted on many EC2
   - EFS works with EC2 instance multi-AZ
-  - Highly available, scalable, expensive (3xgp2), pay per use
+  - Highly available, scalable, expensive (3x gp2), pay per use
   - Use cases: content management, web serving, data sharing, wordpress
   - Use NFSv4.1 protocol
   - Uses security group to control access to EFS
@@ -495,7 +493,7 @@ If things don't work...
   - To migrate an EBS volume across AZ
     - Take a snapshot
     - Restore the snapshot to another AZ
-    - EBS backups us IP and you shouldn't run them while your applcation is handling a lot of traffic
+    - EBS backups use IP and you shouldn't run them while your applcation is handling a lot of traffic
   - Root EBS Volumes of instances get terminated by default if the EC2 instance gets terminated. (you can disable that)
 - EBS vs EFS - Elastic File System
   ![alt text](image-17.png)
@@ -507,6 +505,8 @@ If things don't work...
   - Remember: EFS vs EBS vs Instance Store
 - EBS vs EFS - Cleanup
 
+
+## Scalability & High Availability
 - Scalability & High Availability
   - Scalability means that an application / system can handle greater loads by adapting
   - There are two kinds of scalability
@@ -543,6 +543,7 @@ If things don't work...
     - Auto Scaling Group multi AZ
     - Load Balancer multi AZ
 
+## Load Balancing
 - What is load balacing
   - Load Blanaces are servers that forward traffice to multiple servers (e.g. EC2 instances) downstream
   ![alt text](image-18.png)
@@ -591,12 +592,12 @@ If things don't work...
 - Load Balancer Security Groups
   ![alt text](image-20.png)
 
-  
+### Classic Load Balancer
 - Classic Load Balancers (v1)
   - Supports TCP (Layer 4), HTTP & HTTPS (Layer 7)
   - Health checks are TCP or HTTP based
   - Fixed hostname
-    xx.regioin.elb.amazonaws.com
+    $name.regioin.elb.amazonaws.com
   ![alt text](image-21.png)
 
 - Classic Load Balancers Hands on
@@ -607,8 +608,9 @@ If things don't work...
     - Configure health check
       ![alt text](image-22.png)
     - Add EC2 instances
-      3 EC2 instance
+      - 3 EC2 instance
 
+### Application Load Balaner
 - Application Load Balancer (v2)
   - Application load balancer is layer 7 (HTTP)
   - Load balancing to multiple HTTP applications across machines (target groups)
@@ -619,7 +621,7 @@ If things don't work...
     - Routing bases on path in URL
     - Routing based on hostname in URL
     - Routing based on Query String, Headers
-  - ALB are a great fit for micro  services & container-based applcation (example: Docker & Amazon ECS)
+  - ALB are a great fit for micro services & container-based applcation (example: Docker & Amazon ECS)
   - Has aport mapping feature to redirect to a dynamic port in EC2
   - In comparison, we'd need multiple Class Load Balancer per application
   ![alt text](image-23.png)
@@ -653,8 +655,8 @@ If things don't work...
           - Path
           - Request
 
-
-- Network Load Balanced (v2)
+### Network Load Balancer
+- Network Load Balancer (v2)
   - Network load balancer (Layer 4) allow to
     - Forward TCP & UDP traffic to your instances
     - Handle millions of request per seconds
@@ -664,7 +666,7 @@ If things don't work...
   - Not included in the AWS free tier
   ![alt text](image-26.png)
 
-- Network Load Balanced (v2) - Target Group
+- Network Load Balancer (v2) - Target Group
   - EC2 Instances
   - IP Addresses - must be private IPs
   - Application Balancer
@@ -677,6 +679,8 @@ If things don't work...
       - TCP 80: Taget Group
   - Create a Target Group
 
+
+### Gateway Load Balancer
 - Gateway Load Balancer
   - Deploy scale and manage a fleet of 3rd party network virtual applianaces in AWS
   - Example: Firewalls, intrusion Detection and Prvention Systems, Deep Packet Inspection System, payload manipulation...
@@ -691,6 +695,8 @@ If things don't work...
   - IP Addresses - must be private IPs
   ![alt text](image-29.png)
 
+
+### Sticky Sessions (Session Affinity)
 - Sticky Sessions (Session Affinity)
   - It is possible to implement stickiness so that the same client is always redirected to the same instance behind a load balancer
   - This works for Class Load Balancers & Application Load Balancers
@@ -783,7 +789,7 @@ If things don't work...
   - Can be disabled (set value to 0)
   - Set to low value if your requests are short
 
-
+## Auto Scaling Group
 - What's an Auto Scaling Group
   - In real-life, the load on your websites and application can change
   - In the cloud, you can create and get rid of servers very quickly
@@ -883,21 +889,21 @@ If things don't work...
   - After a scaling activity happens, you are in the cooldown period (default 300 seconds)
   - During the cooldown periond, the ASG will not launch or terminate additional instances (to allow for metrics to stabilize)
   - Advice: Use a ready-to-use AMI to reduce configuration time in order to be serving request fasters and reduce the cooldown period
-  ![alt text](image-42.png)
+    ![alt text](image-42.png)
 
 - Auto Scaling Groups - Scaling Policies Hands on
   - Setup Automatic scaling
     - Create scheduled action
     - Create Predictive scaling policies
       - Scale based on forecast
-        ![alt text](image-43.png)
+      ![alt text](image-43.png)
     - Create Dynamic scaling policies
       - Simple scaling
-        ![alt text](image-44.png)
+      ![alt text](image-44.png)
       - Step scaling
-        ![alt text](image-45.png)
+      ![alt text](image-45.png)
       - Target tracking scaling
-        ![alt text](image-46.png)
+      ![alt text](image-46.png)
   - Monitoring
   - Instance Management
   - Use stress
@@ -906,17 +912,19 @@ If things don't work...
     ```
   - CloudWatch Alarms
 
-- ASG for Soluctions Architects
+- ASG for Solutions Architects
   - ASG Default Termination Policy (simplified version)
     1. Fine the AZ which has the most number of instances
     2. If there are multiple instances in the AZ the choose from, delete the one with the oldest launch configuration 
-  - ASG tries the blance the number of instances across AZ by default
-  ![alt text](image-47.png)
-- ASG for Soluctions Architects - Lifecycle Hooks
+  - ASG tries the balance the number of instances across AZ by default
+    ![alt text](image-47.png)
+
+- ASG for Solutions Architects - Lifecycle Hooks
   - By default as soon as an instance is launched in an ASG it's in service
   - You have the ability to perform extra steps before the instance goes in service (Pending state)
   ![alt text](image-48.png)
-- ASG for Soluctions Architects - Launch Tempalte vs Launch Configuration
+
+- ASG for Solutions Architects - Launch Tempalte vs Launch Configuration
   - Both:
     - ID of the Amazon Machine Image (AMI), the instance type, a key pair, security groups, and the other parameters that you use to launch EC2 instances (tags, EC2 user-data...)
   - Launch Configuration (legacy)
@@ -927,4 +935,362 @@ If things don't work...
     - Provision using both On-Demond and Spot instances (or a mix)
     - Can use T2 unlimited burst feature
     - Recommended by AWS going forward
-    
+
+
+## RDS
+
+- AWS RDS Overview
+  - RDS stands for Relational Database Service
+  - It's a managed DB servce for DB use SQL as a query language
+  - It allows you to create databases in thoe cloud that are managed by AWS
+    - Postgres
+    - MySQL
+    - MariaDB
+    - Oracle
+    - Microsoft SQL Server
+    - Aurora (AWS Proprietary database)
+
+- Advantage over using RDS versus deploying DB on EC2
+  - RDS is a managed service
+    - Automated provsioing, OS patching
+    - Continuous backups and restore to specific timestamp (Point in Time Restore)
+    - Monitoring dashboard
+    - Read replicas for improved read performance
+    - Multi AZ setup for DR (Disaster Recovery)
+    - Maintenance windows for upgrades
+    - Scaling capability (vertical and horizontal)
+    - Storage backend by EBS (gp1 or io1)
+  - But yon can't SSH into your instances
+
+- RDS Backups
+  - Backups are  automatically enabled in RDS
+  - Automated backups
+    - Daily full backup of database (during the maintenance window)
+    - Transaction logs are backed-up by RDS every 5 minutes
+    - => ability to restore to any point in time (from oldest backup to 5 minutes ag0)
+    - 7 days retention (can be increased to 35 days)
+  - DB Snapshots
+    - Manually triggered by the user
+    - Retention of backup for as long as yor want
+
+- RDS - Storage Auto Scaling
+  - Helps you increase storage on your RDS DB instance dynamically
+  - When RDS detects you are running out of free database storage, it scales automatically
+  - Avoid manually scaling your database storage
+  - You have to set Maximum Storage Threshold (maximum limit for DB storage)
+  - Automatically modify storage if
+    - Free storage is less than 10% of allocated storage
+    - Low-storage lasts at least 5 minutes
+    - 6 hours have passed since last modification
+  - Useful for applcations with unpredictable workloads
+  - Supports all RDS database engines (MariDB, MySQL, PortgreSQL, SQL Server, Oralce)
+
+- RDS Read Replicas for read scalability
+  - Up to 5 Read Replicas
+  - With AZ, Cross AZ or Cross Region
+  - Replication in ASYNC, so reads are eventually consistent
+  - Replicas can be promoted to their own DB
+  - Applications must update the connection string to leverage read replicas
+  ![alt text](image-49.png)
+
+- RDS Read Replicas - Use cases
+  - You have production database that is taking on normal load
+  - You want to run a reporting application to run some analytics
+  - You create a Read Replica to run the new workload there
+  - The production application is unaffected
+  - Read replicas are used for SELECT (=read) only ony kind if statements (not INSERT, UPDATE, DELETE)
+  ![alt text](image-50.png)
+
+- RDS Read Replicas - Network Cost
+  - In AWS there's a network cost when data goes from one AZ to another
+  - For RDS Read Replicas within the same region, you don't pay that free
+  ![alt text](image-51.png)
+
+- RDS Multi AZ (Disaster Recovery)
+  - SYNC replication
+  - One DNS name - automatic app failover to standby
+  - Increase availability
+  - Failover in case of loss of AZ, loss of network, instance or storage failure
+  - No manual intervention in apps
+  - Not used for scaling
+  - Note: The Read Replicas be setup as Multi AZ for Disater Recovery (DR)
+  ![alt text](image-52.png)
+
+- RDS - From Single-AZ to Multi-AZ
+  - Zero downtime operation (no need to stop the DB)
+  - Just click on 'modify' for the database
+  - The following happens internally
+    - A snapshot is taken
+    - A new DB is restored from the snapshot in a new AZ
+    - Synchronization is established between the two databases
+  ![alt text](image-53.png)  
+
+- RDS Hands on
+  - Create database
+    - Engine Tyep: MySQL
+    - Templates: Free tier
+    - DB instance identifier: saa-c03-database
+    - Master username
+    - Master password
+    - Master Confrim password
+    - DB instance size:  db.t2.micro
+    - Allocated storage: 20 GiB
+    - Enable storage autoscaling: disable
+    - Publicly accessible: Yes
+    - VPC security group
+    - AZ
+    - IAM db authentication: disable
+    - Enable automatic backupsL: enable
+    - Backup retention period: 7 days (7 ~ 35)
+    - Backup windows: No preference
+    - Enable deletion protection: disable
+  - Update RDS instance
+    - Instance actions > Create read replica    
+
+  - Use `Sqlectron` connect to RDS
+
+- RDS Security - Encrpytion
+  - At rest encryption
+    - Possibility to encrypt the master & read replicas with AWS KMS - AES-256 encryption
+    - Encryption has to be defined at launch time
+    - If the master is not encrypted, the read replicas cannot be encryped
+    - Transparent Data Encryption (TDE) avaliable for Oracle and SQL Server
+  - In-flight encryption
+    - SSL certificates to encrypt data to RDS in flight
+    - Provide SSL options with trust certificate when connecting to database
+    - To enforce SSL
+      - PostgreSQL: rds.force_ssl=1 in the AWS RDS Console (Parameter Groups)
+      - MySQL: Within the DB
+        GRANT USAGE ON *.* TO 'mysqluser'@'%' REQUIRE SSL;
+
+- RDS Encryption Operations
+  - Encrypting RDS backups
+    - Snapshots of un-encrypted RDS databases are un-encrypted
+    - Snapshots of encrypted RDS databases are encrypted
+    - Can copy a snapshot into an encrypted one
+  - To encrypt an un-encrypted RDS database
+    1. Create a snapshot of the -n-encrypted database
+    2. Copy the snapshot and enable encryption for the snapshot
+    3. Restore the database from encrypted snapshot
+    4. Migrate applcations to the new database, and delete the old database
+
+- RDS Security - Network & IAM
+  - Network Security
+    - RDS databases are usually deployed within a private subnet, not in public one
+    - RDS security works by leveraging security groups (the same conect as for EC2 instances) - it controls which IP/security group can cummunicate with RDS
+  - Access Management
+    - IAM policies help control who can manage AWS RDS (througt the RDS API)
+    - Traditinal Username and Password can be used to login into the database
+    - IAM-based authentication can be used to login into RDS MySQL & PostgreSQL
+
+- RDS - IAM Authentication
+  - IAM database authentication works with MySQL and PostgreSQL 
+  - You don't need a password, just an authentication token obtained through IAM & RDS  API calls
+  - Auth token has a lifetime of 15 minutes
+  
+  - Benefits
+    - Network in/out must be encrypted using SSL
+    - IAM to centrally message users instead of DB
+    - Can leverage IAM Roles and EC2 instance profiles for easy integration
+
+  ![alt text](image-54.png)
+
+- RDS Secruity - Summary
+  - Encryption at rest
+    - Is done only when yoru first create the DB instance
+    - or unencrypted DB => snaphot => copy snapshots as encrypted => create DB from snapshot
+  - Your responsibility
+    - Check the ports/IP/Security group inbound rules in DB's SG
+    - In-database user creation and permissions or manage throught IAM
+    - Creating a database with or without public access
+    - Ensure the parameter groups or DB is configured  to only allow SSL connections
+  - AWS responsibility
+    - No SSH access
+    - No manual DB patching
+    - No manual OS patching
+    - No way to audit the underlying instance
+
+
+### Aurora
+
+- Amazon Aurora
+  - Aurora is a proprietary technology from AWS (not open sourced)
+  - Postgres and MySQL are both supported as Aurora DB (that means your drivers will work as if Aurora was a Postgres or MySQL database)
+  - Aurora is "AWS cloud optimized" and claims 6x performance improvement over MySQL on RDS, over 3x the performance of Postgres on RDS
+  - Aurora storage automatically gross in increaments of 10GB, upt ot 128 TB
+  - Aurora can have 15 replicas while MySQL has 5, and the replication process is faster (sub 10 ms replica lag)
+  - Failover in Aurora is instantaneous. It's HA native.
+  - Aurora costs more than RDS (20% more) -  but is more efficient
+
+- Aurora High Availablity and Read Scaling
+  - 6 copies of your data across 3 AZ
+    - 4 copies out of 6 needed for writes
+    - 3 copies out of 6 need for reads
+    - Self healing with peer-to-peer replication
+    - Storage is striped across 100s of volumes
+  - One Aurora Instance takes writes (master)
+  - Automated failover for master in less than 30 seconds
+  - Master + uo to 15 Aurora Read Replicas serve reads
+  - Support for Cross Region Replication
+  ![alt text](image-55.png)
+
+- Aurora DB Cluster
+  ![alt text](image-56.png)
+
+- Features of Aurora
+  - Automatic fail-over
+  - Backup and Recovery
+  - Isolation and security
+  - Industry compliance
+  - Push-button scaling
+  - Automated Patching with Zero Downtime
+  - Advanced Monitoring
+  - Routine Maintenance
+  - Backtrack
+    - restore data at any point of time without using backups
+
+- Aurora Security
+  - Similiar to RDS because used the same engines
+  - Encryption at rest using KMS
+  - Automated backups, snapshots and replicas are also encrypted
+  - Encryption in flight using SSL (same process as MySQL or Postres)
+  - Possibility to authenticate using IAM token (same method as RDS)
+  - You are responsible for protecting the instance with securiry groups
+  - You can't SSH
+
+- Aurora Hands on
+  - Create database
+    - Engine options: Amazon Aurora
+    - Edition: 
+      - Amazon Aurora with MySQL compatiblity
+      - Amazon Aurora with PostgreSQL compatiblity
+    - Version: 5.6
+    - Database Location: Regional
+    - Database features
+      - One writer and multiple reader
+      - One writer and multiple reader - Parallel query
+      - Multiple writers
+      - Serverless
+    - Templates
+      - Production
+      - Dev/Test
+    - DB instance size
+      - DB instancce class
+        - Memory Optimized classes (r and x classes)
+        - Burstable classes (t classes)
+    - Avaliability & durability (Multi-AZ deployment)
+      - Create an Aurora Replicat or Reader node in a different AZ
+      - Don't create an Aurora Replica
+    - Backup retention period: 1 to 35 days
+    - Enable Encryption
+      - Key in KMS
+    - Backtrack
+      - Enable backtrack
+    - Maintenance
+      - Enable auto minor version upgrade
+  - Modify > Add Auto Scaling policy
+    - Target 60%
+    - Cluster capacity details
+      - Minimum capacity: 1
+      - Maximum capacity: 15
+
+- Aurora Replicas - Auto Scaling
+  ![alt text](image-57.png)
+
+- Aurora - Custom Endpoints
+  - Define a subset of Aurora Instances as a Custom Endpoint
+  - Example: Run Analytical queries on specific replicas
+  - The Reader Endpoint is generally not used after defining Custom Endpoints
+  ![alt text](image-58.png)
+  
+- Aurora Serverless
+  - Automated database instantiation and auto-scaling based on actiual usage
+  - Good for infrequent, intermittent or unpredictable workloads
+  - No capacity planning needed
+  - Pay per second, can be more cost-effective
+  ![alt text](image-59.png)
+
+- Aurora Multi-Master
+  - In case you want immediate failover for write node (HA)
+  - Every node does R/W - vs promoting a RR as the new master
+
+  ![alt text](image-60.png)
+
+- Global Aurora
+  - Aurora Cross Region Read Replicas
+    - Useful for disaster recovery
+    - Simple to put in place
+  - Aurora Global Database (recommended)
+    - 1 Primary Region (read/write)
+    - Up to 5 secondary (read-only) regions, replication lag is less than 1 second
+    - Up to 16 Read Replicas per secondary region
+    - Helps for decreasing latency
+    - Promoting another region (for disaster recovery) has an ROT of < 1 minute
+  ![alt text](image-61.png)
+
+- Aurora Machine Learning
+  - Enables you to add ML-based predication to your applications via SQL
+  - Simple, optimized and secure integration between Aurora and AWS ML services
+  - Supported services
+    - Amazon SageMaker (use with any ML model)
+    - Amazon Comprehend (for sentiment analysis)
+  - You don't need to have ML experence
+  - Use cases: fraud detection, ads targeting, sentiment analysis, product recommendations
+  ![alt text](image-62.png)
+
+
+## Amazon ElastiCache
+
+- Amazon ElatiCache Overview
+  - The same way RDS is to get managed Relational Databases
+  - ElastiCache is to get managed Redis or Memcached
+  - Caches are in-memory databases with really high performance, low latency
+  - Helps reduce load off of databases for read intensive workloads
+  - Helps make your application stateless
+  - AWS takes care of maintenance / patching, optimizations, setup, configuration, montoring, failure recovery and backups
+  - Use ElastiCache involves heavy applicaton code changes
+
+- ElastiCache Solution Architecture - DB Cache
+  - Applications queries ElastiCache, if not available, get from RDS and store in ElastiCache
+  - Help relieve load in RDS
+  - Cache must have an invalidation strategy to make sure only the most current data is used in there
+  ![alt text](image-63.png)
+
+- ElastiCache Solution Architecture - Use Session Store
+  - User logs into any of the application
+  - The application writes the session data into ElastiCache
+  - The user hits another instance of our application
+  - The instance retrieves the data and the user is already logged in
+  ![alt text](image-64.png)
+
+- ElastiCache - Redis vs Memcached
+  - REDIS
+    - MultiAZ with Auto-Failover
+    - Read Replicas to scale reads and have HA
+    - Data Durability using AOF persistence
+    - Backup and restore failure
+  - MEMCACHED
+    - Multi-node for partitioning of data (sharding)
+    - No high availiable (replication)
+    - No persistent
+    - No backup and restore
+    - Multi-threaded architecture
+  ![alt text](image-65.png)
+
+- ElastiCache Hand on
+  - Create ElastiCache cluster
+    - Cluster engine
+      - Redis
+      - Memcached
+    - Node Type: cache.t2.micro
+    - Number of replicas: 0
+      - Will disable Muiti-AZ with Auto-Failover
+    - Subnet group
+    - Encryption with KMS
+    - Enable automatic backups
+    - Backup
+      - Backup retention period: 1 ~ 7 days
+      - Backup window
+    - Maintenance
+      - Maintenance windows
+      - Topic for SNS notification
