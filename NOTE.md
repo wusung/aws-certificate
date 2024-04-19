@@ -1354,6 +1354,7 @@ If things don't work...
   - Why route 53?  53 is a reference to the tranditional DNS port
   ![alt text](image-71.png)
 
+## Route 53
 - Route 53 - Records
   - How you want to route traffice for a domain
   - Each record contains
@@ -1533,24 +1534,51 @@ If things don't work...
 
 - Route 53 Hands on
   - Route 53 > Create health check
+    - Want to monitor
+      - Endpoint
+      - Status of other checks (calculated health check)
+      - Status sof CloudWatch alarm
+    
     - Endpoint
-      - Protocol
-      - IP Address
-      - Host name
-      - Port
-      - Path
-    - Advanced
-      - Request interval
-      - Failure threshold
-      - String matching
-      - Latency graphs
-      - Invert health check status
+      - Endpoint
+        - Protocol
+        - IP Address
+        - Host name
+        - Port
+        - Path
+      - Advanced
+        - Request interval
+        - Failure threshold
+        - String matching
+        - Latency graphs
+        - Invert health check status
+        - Disable health check
+        - Health checker regions
+          - Customize
+          - Use recommended
+      - Get notified when health check fails
+        - Create alarm
+    - Route 53 > Health checks
+      - See Status in the list
+        - Health checkers
+    - EC2 instance
+      - Security Group
+        - Allow inbound
+
+    - Status of other checks (calculated health check)
+      - Health checks to monitor
+      - Report healthy when
+        - at least \# of 3 selected health checks are healthy
+        - all health checks are healthy (AND)
+        - on ore more health checks are healthy (OR)
+      - Invert health checks status
       - Disable health check
-      - Health checker regions
-        - Customize
-        - Use recommended
-    - Get notified when health check fails
-      - Create alarm
 
-
+    - Status sof CloudWatch alarm
+      - CloudWathc region
+      - CloudWatch alarm
+      - Health check status
+        - the status is healthy
+        - the status is unhealthy
+        - use last known status
 
