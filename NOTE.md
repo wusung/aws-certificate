@@ -1502,3 +1502,55 @@ If things don't work...
     3. Health checks that montior CloudWatch Alarms (full controll!!) - e.g. throttles of DynamoDB, alarms on RDS, custom metrics, ...(helpfull for private resources)
   - Health Checks are integrated with CS metrics
   ![alt text](image-79.png)
+
+- Health Checks - Monitor an Endpoint
+  - About 15 global health checkers will check the endpoint health
+    - Healthy/Unhealthy Threshold - 3 (default)
+    - Interval - 30 sec (can set to 10 sec - higher cost)
+    - Supported protocol: HTTP, HTTPS and TCP
+    - if > 18% of health checkers report the endpoint is healthy, Route 53 considers is Healthy. Otherwise, it's Unhealthy
+    - Ability to choose which locations you want Route 53 to use
+  - Health Checks pass only when the endpoint responds with the 2xx and 3xx status codes
+  - Health Checks can be setup to pass/fail based on the text in the first 5120 bytes of the response
+  - Configure you router/firewall to allow incoming requests from Route 53 Health Checkers
+  ![alt text](image-80.png)
+
+- Route 53 - Calculated Health Checks
+  - Combine the results of multiple Health Checks into a single Health Check
+  - You can use OR, AND, or NOT
+  - Can monitor up to 256 Child Health Checks
+  - Specify how many of the health checks need to pass to make the parent pass
+  - Usage: perform maintenance to your website without cauing all health checks to fail
+  ![alt text](image-81.png)
+
+- Health Checks - Private Hosted Zones
+  - Route 53 health checkers are outside the VPC
+  - They can't access private endpoints (private VPC or on-premises resource)
+
+  - You can create a CloudWatch Metric and associate a CloudWatch Alart, then create a Health Check that the alarm itself
+
+  ![alt text](image-82.png)
+
+- Route 53 Hands on
+  - Route 53 > Create health check
+    - Endpoint
+      - Protocol
+      - IP Address
+      - Host name
+      - Port
+      - Path
+    - Advanced
+      - Request interval
+      - Failure threshold
+      - String matching
+      - Latency graphs
+      - Invert health check status
+      - Disable health check
+      - Health checker regions
+        - Customize
+        - Use recommended
+    - Get notified when health check fails
+      - Create alarm
+
+
+
