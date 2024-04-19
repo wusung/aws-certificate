@@ -1294,3 +1294,211 @@ If things don't work...
     - Maintenance
       - Maintenance windows
       - Topic for SNS notification
+    - Advaned Redis settings
+      - Subnet group
+      - Preferred availability zone(s)
+    - Security
+      - Security groups
+      - Encryption at-rest
+      - Encryption in-transit
+      - Redis AUTH
+
+- ElastiCache -Cache Security
+  - All caches in ElastiCache
+    - Do not support IAM authentication
+    - IAM policies on ElastiCache are only used for AWS API-level security
+  - Redis AUTH
+    - You can set a 'password/token' when you create a Redis cluster
+    - This is an extra level of security for you cache (on top of security groups)
+    - Support SSL in flight encryption
+  - Memcached
+    - Supports SASL-based authentication (advanced)
+  ![alt text](image-66.png)
+
+- Patterns for ElastiCache
+  - Lazzy Loading: all the read data is cached, data can become stale in cache
+  - Write Through: Adds or update data in the cache when written to a DB (no stale data)
+  - Session Store: store temporary session data in a cache (using TTL features)
+  ![alt text](image-67.png)
+
+  - Quote: There are only tow hard things in Computer Science: cache invalidation and naming things
+
+- ElastiCache - Redis Use Case
+  - Gaming Leaderboards are computationally compex
+  - Redis Sorted sets guarantee both uniqueness and element ordering
+  - Each time a new element added, it's ranked in real itme, then added in correct order
+  ![alt text](image-69.png)
+
+
+## DNS
+
+- Whats DNS
+  - Domain Name System which translates the human friendly hostnames into the machine IP addresses
+  - Dns is the backbone of the Internet
+  - DNS uses hierarchical naming structure
+
+- DNS Terminologies
+  - Domain Registra: Amazon Route 53, GoDaddy...
+  - DNS Records: A, AAAA, CNAME, NS,...
+  - Zone File: Contains DNS records
+  - Name Server: resolves DNS queries (Authoritative or Non-Authoritative)
+  - Top Level Domain (TLD)L .com, .us, .in, .gov, .org...
+  - Second Level Domain (SLD): amazon.com, google.com,...
+
+- How DNS Works
+  - A hight available, scalable, fully managed and Authoritative DNS
+    - Authoritative = the customer (you) can update the DNS records
+  - Route 53 is also a Domain Registra
+  - Ability to check the health of your resources
+  - The only AWS service which provides 100% availability SLA
+  - Why route 53?  53 is a reference to the tranditional DNS port
+  ![alt text](image-71.png)
+
+- Route 53 - Records
+  - How you want to route traffice for a domain
+  - Each record contains
+    - Domain/subdomain Name - e.q., example.com
+    - RecordType - e.g.,A or AAAA
+    - Value - e.g., 123.456.789.123
+    - Routing Policy - how Route 53 responds to queries
+    - TTL - amount of time the record cached at NDS Resolvers
+  - Route 53 supports the following DNS record types
+    - (must know) A/AAAA/CNAME/NS
+    - (advanced) CAA/DS/MX/NAPTR/PTR/SOA/TXT/SPF/SRV
+
+- Route 53 - Record Types
+  - A - maps a hostname to IPv4
+  - AAAA - maps a hostname to IPv6
+  - CNAME - maps a hostnaem to another hostname
+    - The target is a domain which must have an A or AAAA record
+    - Can't create a CNAME record for the top node of a DNS namespace (Zone Apex)
+    - Example: you can't create for example.com, but you can create for www.example.com
+  - NS - Name Servers for the Hosted Zone
+    - Control how traffic is routed for a domain
+
+- Route 53 - Hosted Zones
+  - A contaienr for records that define how to route traffice to a domain and its subdomains
+  - Public Hosted Zones - contains records that specify how to route traffice on the Internet (public domain names)
+    - application1.mypublicdomain.com
+  - Private Hosted Zones - contains records that specify how you route traffice within one or more VPCs (private domain names)
+    - application1.mypublicdomain.internal
+  - You pay $0.50 per month per hosted zone
+
+- Route 53 - Public vs. Private Hosted Zones
+  ![alt text](image-73.png)
+
+- Route 53 Hands on
+  - Register Domain
+    - Fill in the required fields in the form.
+  - Hosted zone details
+    - Record Type: NS
+    - Record Type: SOA
+
+- Route 53 create our first record
+  - Record type: A
+  - Test it with `dig` and `nslookup` command
+    ```
+    dig example.com
+
+    nslookup example.com
+    ```
+
+- Route 53 EC2 setup
+  - Create 3 EC2 instance in 3 regions
+  - Create an Application Load Balancer
+    - Add the 3 instance
+
+- Route 53 - Records TTL (Time to Live)
+  - High TTL - e.g., 24hr
+    - Less traffice on Route 53
+    - Possibly outdated records
+  - Low TTL - e.g., 60 sec
+    - More traffic on Rotue 53 ($$)
+    - Records are outdated for less time
+    - Easy to change records
+  - Except for Alias records, TTL is mandatory for each DNS record
+  ![alt text](image-74.png)
+
+- Route 53 CNAME vs Alias
+  - AWS Resources (Load Balancer, CloudFront...) expose an AWS hostname
+    - lbl-1233.us-east-2.elb.amazonaws.com and you want myapp.mydomain.com
+  - CNAME
+    - Points a hostname to any other hostname. (app.mydomain.com => blabla.anything.com)
+    - ONLY FOR NOT ROOT DOMAIN (aka. something.mydomain.com)
+  - Alias
+    - Points a hostname to an AWS Resource (app.mydomain.com => blabla.amazonaws.com)
+    - Works for ROOT DOMAIN and NON ROOT DOMAIN (aka.mydomain.com)
+    - Free of charge
+    - Native health check
+
+- Route 53 - Alias Records
+  - Maps a hostname to an AWS resource
+  - An extension to DNS functionality
+  - Automatically recognizes changes in the resources' IP addresses
+  - Unlik CNAME, it can be used for the top node of a DNS namespace (Zone Apex), e.g.: example.com
+  - Alias Record is always of type A/AAAA for AWS resources (IPv4/IPv6)
+  - You can't set the TTL
+  ![alt text](image-75.png)
+
+- Route 53 - Alias Records Targets
+  - Elastic Load Balancers
+  - CloudFront Distributions
+  - API Gateway
+  - Elastic Beanstalk environments
+  - S3 Websites
+  - VPC Interface Endpoints
+  - Global Accelerator
+  - Route 53 record in the same hosted zone
+
+  - You cannot set an ALIAS record for an EC2 DNS name
+
+- Route 53 - Routing Policies
+  - Define how Route 53 responds to DNS queries
+  - Don't get confused by the word 'Routing'
+    - It's not the same as Load balancer routing which routes the traffice
+    - DNS does not route any traffice, it only responds to the DNS queries
+  - Route 53 supports the following Routing Poilcies
+    - Simple
+    - Weighted
+    - Failover
+    - Latency based
+    - Geolocation
+    - Multi-Value Answer
+    - Geoproximity (using Route 53 Traffice Flow feature)
+
+- Routing Policies - Simple
+  - Typically, route traffice to a simple resource
+  - Can spcify multiple values in the same record
+  - If multiple values are returned, a random one is chosen by the client
+  - When Alias enabled, specify only one AWS resource
+  - Can't be associated with Health Checks
+  ![alt text](image-76.png)
+
+- Routing Policies - Weighted
+  - Control the % of the requests that go to each specific resource
+  - Aasign each record a relative weight
+    - traffice (%) = Weight for a specific record / Sum of all the weights for all records
+    - Weights don't need to sum up to 100
+  - DNS records must have the same name and type
+  - Can be assocated with Health Checks
+  - Use cases: load balancing between regions, testing new application versions...
+  - Assign a weight of 0 to a record to stop sending traffice to a resource
+  - If all records have weight of 0, then all records will be returned equally
+  ![alt text](image-77.png)
+
+- Routing Policies - Latency-based
+  - Redirect to the resource that has the least latency close to us
+  - Super helpfull when latency for user is a priority
+  - Latency is based on traffice between users and AWS Regions
+  - Germany users may be directed to the US (if that's the lowest latency)
+  - Can be associated with Health Checks (has a failover capability)
+  ![alt text](image-78.png)
+
+- Route 53 - Health Checks
+  - HTTP Health Checks are only for public
+  - Health Check => Automated DNS Failover
+    1. Health checks that monitor an endpoint (application, server, other AWS resource)
+    2. Health checks that montior other health checks (Calculated Health Checks)
+    3. Health checks that montior CloudWatch Alarms (full controll!!) - e.g. throttles of DynamoDB, alarms on RDS, custom metrics, ...(helpfull for private resources)
+  - Health Checks are integrated with CS metrics
+  ![alt text](image-79.png)
