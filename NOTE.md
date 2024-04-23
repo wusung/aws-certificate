@@ -1,8 +1,225 @@
 # Note
 
+## AWS
+
+- AWS Cloud History
+  ![alt text](image-104.png)
+
+- AWS Infrastructure
+  https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
+
+- AWS Region
+  - AWS has Regions all aounrd the world
+  - Names can be us-east-1, eu-west-3...
+  - A region is a cluster of data centers
+  - Most AWS services are region-scoped
+
+- How to choose an AWS Regions?
+  - Compliance with data govermance and legal requirements: data never leaves a region without your explicit permission
+  - Proximity to customers: reduced latency
+  - Ava services within a Region: new services and new features aren't available in every Region
+  - Pricing: pricing veries region to region and is tranparent in the service pricing page
+
+- AWS Availability Zones
+  - Region region has many availability zone (usually 3, min is 3, max is 6).
+    - ap-southeast-2a
+    - ap-southeast-2b
+    - ap-southeast-2b
+  - Each availablity zone (AZ) is one or more discrete data centers with redundant power, networking,  and connectivity
+  - They're seperate from each other, so that they're isolated from disasters
+  - They're connected with high bandwidth, ultra-low latency networking 
+  ![alt text](image-105.png)
+
+- AWS Points of Presence (Edge Locations)
+  - Amazon has 400+ Points of Presence (400+ Edge Locations & 10+ Regional Caches) in 90+ cities across 40+ countries)
+  - Content is delivered to end users with lower latency
+  ![alt text](image-106.png)  
+
+- Tour of the AWS Console
+  - AWS has Global Services
+    - Identity and Access Management (IAM)
+    - Route 53 (DNS service)
+    - CloudFront (Content Delivery Network)
+    - WAF (Web Applicaton Firewall)
+  - Most AWS services are Region-scoped
+    - Amazon EC2 (Infrastructure as a Service)
+    - Elastic Beanstalk (Platform as a Service)
+    - Lambda (Function as a Service)
+    - Rekognition (Software as a Service)
+  - Region Tablle: https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?nc1=h_ls
+
+- Tour of the AWS Console hands on
+  - Switch region (Global or Regional)
+  - Console Home
+  - Services > All services
+  - Services> Search services
+
+- About the UI Changes in the course
+
+## Budget
+
+- AWS Budget Setup
+  - My Account > IAM User and Role Access to Billing Information
+    - Activate IAM access (enabed)
+  - Billing > Bills
+  - Billing > Free tier
+  - Billing > Budgets
+    - Budget setup
+      - Use a template
+      - Customize
+    - Template - new
+      - Zero spend budget
+      - Monthly cost budget
+        - Enter your bedgeted amount ($)
+      - Daily savings Plans coverage budget
+
 ## IAM
 
-## EC2
+### IAM: Users & Groups
+
+- IAM: Users & Groups
+  - IAM = Identity and Access Management, Global service
+  - Root account created by default, shouldn't be used or shared
+  - Users are people within your origanization, and can be grouped
+  - Groups only contain users, not other groups
+  - Users don't have to belong to a group, and user can belong to multiple groups
+  ![alt text](image-107.png)
+
+- IAM: Permissions
+  - Users or Groups can be assigned JSON documents called policies
+  - These policies define the permissions of the users
+  - In AWS you apply the least privilege principle: don't give more permissons than a user needs
+  ![alt text](image-108.png)
+
+- IAM: Users & Groups Hands on
+  - Add user
+    - Add user to group
+      - Create group 
+
+  - Account Alias
+    - Create alias for AWS ccount
+
+
+- IAM Policies inheritance
+  ![alt text](image-109.png)
+
+- IAM Policies Structure
+  - Consists of
+    - Version: policy language, always include "2012-10-17"
+    - Id: an identifier for the policy (optional)
+    - Statement: one or more individual statements (requried)
+  - Statements consists of
+    - Sid: an identifier for the statement (optional)
+    - Effect: whether the statement allows or denies access (Allow, Deny)
+    - Principal: account/user/role to which this policy applied to
+    - Action: list of actions this policy allows or denies
+    - Resource: list of resources to which the actions applied to
+    - Condition: condtions of when this policy in effect (optional)
+  ![alt text](image-110.png)
+
+- IAM Policies Hands on
+  - Users > Add permissions
+    - Attach existing policies directly
+  - User Groups > Create group
+  
+- Policies
+  - Permissions 
+    - Policy summary
+    - JSON
+  - Create polcy
+
+- IAM - Password Policy
+ - Strong passwords = higher security for your account
+ - In AWS, you can setup a password policy
+  - Set a minimum password length
+  - Require specific character length
+    - including uppercase letters
+    - lowercase letters
+    - numbers
+    - non-alphanumeric characters
+  - Allow all IAM users to change their own passwords
+  - Require users to change their password after some time (password expiration)
+  - Prevent password re-use
+
+- Multi Factor Authentication - MFA
+  - Users have access to your account and can possibly change configurations or delete sources in your AWS account
+  - You want to protect your Root Accounts and IAM users
+  - MFA: password you know + security device you own
+    ![alt text](image-111.png)
+  - Main benefiit of MFA
+    if a password is stolen or hacked, the account is not compremised
+
+- MFA devices options in AWS
+  - Virtual MFA device
+  - Universal 2nd Factor (U2F) Security Key
+  ![alt text](image-112.png)
+  - Hardware Key Fob MFA Device
+  - Hardware Key Fob MFA Device for AWS GovCloud (US)
+  ![alt text](image-113.png)
+
+- IAM MFA Hands on
+  - Account settins > Password Policy
+    - Set password policy
+
+  - Your Security Credentials
+    - Multi-factor authentication (MFA)
+      - Activate MFA
+        - Virtual MFA device
+        - U2F security key
+        - Other hardware MFA device
+
+- AWS Access Keys and SDK
+  - To access AWS, you have three options
+    - AWS Management Console ()
+    - AWS Command Line Interface (CLI):
+    - AWS Software Developer Kit (SDK): for code: protected by access keys
+  - Access Keys are generated through the AWS Console
+  - Uesr manage their own access key
+  - Access Keys are secret, just like a password, Don't share them
+  - Access Key ID ~= username
+  - Secret Access Key ~= password
+
+- What's the AWS CLI?
+  - A tool that enables you to interact with AWS services using commands in your command-line shell
+  - Direct access to the public APIs of AWS services
+  - You can develop scripts to manage your resources
+  - It's open-source
+  - Alternative to using AWS Management Console
+
+- What's the AWS SDK?
+  - AWS Software Development Kit (AWS SDK)
+  - Language-specific APIs (set of libraries)
+  - Enables you to access and manage AWS services progmrammatically
+  - Embedded within your application
+  - Supports
+    - SDKs (JavaScript, Python, PHP, .NET, Ruby, Java, Go, Node.js, C++)
+    - Mobile SDKs (Android, iOS,...)
+    - IoT Device SDKs (Embedded C, Arduino,...)
+  - Example: AWS CLI is built on AWS SDK for Python
+  ![alt text](image-114.png)
+
+### AWS CloudShell
+
+- AWS CloudShell
+  - command line usage
+    - aws
+  - Preferences
+    - Font
+    - Theme
+  - Download file
+  - Upload file
+  - Tabs layout  
+
+
+### AWS CLI Setup
+
+- AWS CLI Setup on Windows
+- AWS CLI Setup on MacOS
+- AWS CLI Setup on Linux
+- Create Access Keys
+  - Users > ${username} > Security credentials
+
+# EC2
 
 - Instance Type
 - EC2 User Data
@@ -1581,4 +1798,293 @@ If things don't work...
         - the status is healthy
         - the status is unhealthy
         - use last known status
+
+### Routing Policies - Failover (Active-Passive)
+
+- Routing Policies - Failover (Active-Passive)
+  ![alt text](image-83.png)
+- Hands on
+  - Create record
+    - Routing policy: Failover
+    - Failover record type
+      - Primary
+      - Secondary
+    - Health check
+
+### Routing Policies - Geolocation
+
+- Routing Policies - Geolocation
+  - Different from Latency-based
+  - This routing is based on use location
+  - Specify location by Continent, Country or by US State (if there's overlapping, most precise location selected)
+  - Should create a 'Default' record (in case there's no mwatch on location)
+  - Use cases: website localization, restrict content distribution, load balancing,...
+  - Can be associated with Health Checks
+  ![alt text](image-84.png)
+- Hands on
+  - Create record
+    - Routing policy: Geolocation
+    - Location
+
+### Routing Policies - Geoproximity
+
+- Routing Policies - Geoproximity
+  - Route traffice to your resources based on the geographic location of users and resources
+  - Ability to shift more traffice to resources based on the defined bias
+  - To change the size of the geographic region, specify bias values
+  ![alt text](image-85.png)
+    - To expand (1 to 99) - more traffice to the resource
+    - The shrink (-1 to -99) - less traffice to the resource
+  - Resources can be
+    - AWS resources (specify AWS region)
+    - Non-AWS resources (specify Latitude and Longitude)
+  - You must use Route 53 traffic Flow (advanced) to use this feature
+
+- Route 53 - Traffice Flow
+  - Simplify the process of creating and maintaining records in large and complex configurations
+  - Visual editor to manage compex routing decision trees
+  - Configurations can be saved as Traffice Flow Policy
+    - Can be applied to different Rotue 53 Hosted Zones (different domain names)
+    - Support versioning
+  ![alt text](image-86.png)
+  - Hands on
+    - Create Traffic Policy
+      - DNS Type
+        - A
+        - AAAA
+        - CNAME
+        - MX
+        - PTR
+        - SPF
+        - SRV
+        - TXT
+      - Connect To...
+        - Weighted rule
+          - Weight
+        - Failover rule
+          - Primary
+          - Secondary
+        - Geolocation rule
+        - Latency rule
+        - Multivalue answer rule
+        - Geoproximity rule
+          - Endpoint Location
+          - Bias: -99 ~ 99
+          ![alt text](image-87.png)
+        - New endpoint
+          - DNS Type
+    - Create policy records with traffice policy
+      - Policy records
+        - $50 per month
+      ![alt text](image-88.png)
+
+
+### Routing Policies - Multi-Value
+
+- Routing Policies - Multi-Value
+  - Use when routing traffice to multiple resources
+  - Route 53 return nultiple values/resources
+  - Can be associated with Health Checks (return only values from healthy resources)
+  - Up to 8 healthy records are returned for each Multi-Value query
+  - Multi-Value is not a substitute for having an ELB
+  ![alt text](image-89.png)
+
+## 3rd Party Domains & Route 53
+
+- Domain Registar vs DNS Service
+  - You buy or register your domain name with Domain Registrar typically by paying annual charges (e.g., GoDaddy, Amazon Registrar Inc,...)
+  - The Domain Registrar usually provides you with a DNS service to manage yhour DNS records
+  - But you can use another DNS service to manage your DNS records
+  - Example: purchase the domain from GoDaddy and use Route 53 to maange your DNS records
+  ![alt text](image-90.png)
+
+- GoDaddy as Registrar & Route 53 as DNS service
+  ![alt text](image-91.png)
+
+- 3rd Party Registrar with Amazon Route 53
+  - If you buy your domain on a 3rd party registrar, you can still use Route 53 as the DNS service provider
+    1. Create a Hosted Zone in Route 53
+    2. Update NS Records on 3rd party website to use Route 53 Name Servers
+  - Domain Registrar != DNS Service
+  - But every Domain Registrar usually comes with some DNS fatures
+
+- Route 53 - Cleanup
+  - EC2 instance
+  - ELB
+  - Target Groups
+
+## Solution Architecture Disussion
+
+### Introduction
+- Introduction
+  - These solutions architectures are the best part of this course
+  - Lets understand how all the technologies we've seen work together
+  - This is a section you need to be 100% comfortable with
+  - We'll see the progression of a Solution's architect mindset through many sample case studies
+    - WhatIsTheTime.com
+    - MyClothese.com
+    - MyWordPress.com
+    - Instantiating applications quickly
+    - Beanstalk
+
+
+### Stateless Web App: WhatIsTheTime.com
+
+- Feature
+  - It allows poeple to know what time it is
+  - We don't need a database
+  - We want to start small and can accept downtime
+  - We want to fully scale vertically and horizontally, no downtime
+  - Let's go through the Solutions Arahitect journey for this app
+
+![alt text](image-93.png)
+
+- In this lecture we've discussed
+  - Public vs Pirvate IP and instances
+  - Elastic IP vs Route 53 vs Load Balancers
+  - Rotue 53 TTL, A records and Alias Records
+  - Maintaining EC2 instances manually vs Auto Scaling Groups
+  - Multi AZ to survive disasters
+  - ELB Health Checks
+  - Security Group Rules
+  - Reservation of capacity for costing savings when possible
+  - We're considering 5 pillars for a well architecuted applcation: cost, performance, reliability, security, oerationally excellence
+
+
+### Statefull Web App: MyClothes.com
+- Feature
+  - MyClothes.com allows people to buy clothese online
+  - There's shopping cart
+  - Our website is having hundreds of users at the same time
+  - We need to scale, maintain horizontal scalability and keep our web application as stateless as possbile
+  - Users should not lose their shopping cart
+  - Users should have their details (address, etc) in a database
+  ![alt text](image-94.png)
+
+- Introduce Server Session
+  - Stateless HTTP requests are heavier
+  - Security risk (cookie can be latered)
+  - Cookie must be validated
+  - Cookie must be less than 4 4KB
+  ![alt text](image-95.png)
+
+- Storing User Data in a database
+  ![alt text](image-96.png)
+
+- Multi AZ - Servive disasters
+  ![alt text](image-97.png)
+
+- 3-tier architectures for web applications
+  - ELB sticky sessions
+  - Web clients for storing cookies and making our web app stateless
+  - ElastiCache
+    - For storing sessions (alternative: DynamoDB)
+    - For caching data from RDS
+    - Muiti AZ
+  - RDS
+    - For stroing user data
+    - Read replicas for scaling reads
+    - Multi AZ for disaster recovery
+  - Tight Security with security groups referencing each other
+
+### Statefull Web App: MyWordPress.com
+
+- Features
+  - We are trying to create a fully scalable WordPress website
+  - We want to website to access and corectly display picture uploads
+  - Our user data, and the blog content should be stored in a MySQL database
+
+- RDS layer
+  ![alt text](image-98.png)
+- Scaling with Aurora: Multi AZ & REad Replicas
+  ![alt text](image-99.png)
+- Storing images with EBS
+  ![alt text](image-100.png)
+- Storing images with EFS
+  ![alt text](image-92.png)
+
+
+### In this lecture we've disussed
+
+- Aurora Database to have easy Multi-AZ and Read-Replicas
+- Storing data in EBS (single instance application)
+- Vs Storing data in EFS (distributed application)
+
+## Instantiating Applications quickly
+
+- EC2 Instances
+  - Use a Golden AMI: Install your applications, OS dependencies etc.. beforehand and launch your EC2 instance from the Golden AMI
+  - Bootstrap using user Data: For dynamic configuration, use User Data scripts
+  - Hybrid: mix Golden AMI and User Data (Elastic Beanstalk)
+- RDS Databases
+  - Restore from a snapshot: the database will have schemas and data ready
+- EBS Volumes
+  - Restore from a snapshot: the disk will already be formatted and have data
+
+### Elastic Beanstalk
+
+- Typical architecture: Web App 3-tier
+  ![alt text](image-101.png)
+
+
+- Developer problems on AWS
+  - Managing infrastructure
+  - Deploying Code
+  - Congiuring all the dababases, load balancers, etc
+  - Scaling concerns
+  - Most web apps have the same architecture (ALB + ASG)
+  - All the developers want is for their code to run
+  - Possibly, consistently across different applications and environments
+
+- Elastic Beanstalk - Overview
+  - Elastic Beanstalk is developer centric view of deploying an application on AWS
+  - It uses all the component's we've seen before: EC2, ASG, ELB, RDS,...
+  - Managed server
+    - Automatically handles capacity provisioning, load balancing, scaling, application health monitoing, instance configuration,...
+    - Just the application code is the responsiblity of the developer
+  - We still have full control over the configuration
+  - Beanstalk is free but you pay for the underlying instances
+
+- Elastic Beanstalk - Components
+  - Application: collectioin of Elastic Beanstalk components (environments, versions, configurations,...)
+  - Application Version: an iteration of your application code
+  - Environment
+    - Collection of AWS resources running an application version (only one application version at a time)
+    - Tiers: Web Server Environment Tier & Worker Environment Tier
+    - You can create multiple environment (dev, test, prod,...)
+    ![alt text](image-102.png)
+
+- Elastic Beanstalk - Supported Platform
+  - Go
+  - Java SE
+  - Java with Tomcat
+  - .NET Core on Linux
+  - .nET on Windows Server
+  - Node.js
+  - PHP
+  - Python
+  - Ruby
+  - Packer Builder
+  - Single Container Docker
+  - Multi-container Docker
+  - Preconfigured Docker
+  - If not supported, you can write your custom platform (advanced)
+
+- Web Server Tier vs. Worker Tier
+  ![alt text](image-103.png)
+
+
+- Elastic Beanstalk Hands on
+  - Create Application
+    - Platform
+      - Node.js
+    - Application code
+      - Sample application
+      - Upload your code
+    - Presets
+      - Single instances (free Tier eligible)
+      - Sinle instance(using Spot instance)
+      - High availability
+      - High availability(using Spot and On-Demand instances)
+      - Custom configuration
 
