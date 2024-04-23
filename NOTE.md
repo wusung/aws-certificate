@@ -56,23 +56,6 @@
 
 - About the UI Changes in the course
 
-## Budget
-
-- AWS Budget Setup
-  - My Account > IAM User and Role Access to Billing Information
-    - Activate IAM access (enabed)
-  - Billing > Bills
-  - Billing > Free tier
-  - Billing > Budgets
-    - Budget setup
-      - Use a template
-      - Customize
-    - Template - new
-      - Zero spend budget
-      - Monthly cost budget
-        - Enter your bedgeted amount ($)
-      - Daily savings Plans coverage budget
-
 ## IAM
 
 ### IAM: Users & Groups
@@ -198,6 +181,14 @@
   - Example: AWS CLI is built on AWS SDK for Python
   ![alt text](image-114.png)
 
+### AWS CLI Setup
+
+- AWS CLI Setup on Windows
+- AWS CLI Setup on MacOS
+- AWS CLI Setup on Linux
+- Create Access Keys
+  - Users > ${username} > Security credentials
+
 ### AWS CloudShell
 
 - AWS CloudShell
@@ -211,15 +202,89 @@
   - Tabs layout  
 
 
-### AWS CLI Setup
+### IAM Roles for Services
 
-- AWS CLI Setup on Windows
-- AWS CLI Setup on MacOS
-- AWS CLI Setup on Linux
-- Create Access Keys
-  - Users > ${username} > Security credentials
+- IAM Roles for Services
+  - Some AWS service will need to perform action on your behale
+  - To do so, we will assign permissions to AWS services with IAM Roles
+  - Common roles
+    - EC2 Instances Roles
+    - Lamdba Function Roles
+    - Roles for CloudFormation
+  ![alt text](image-115.png)
 
-# EC2
+### IAM Role Hands on
+
+- Roles > Create Role
+  - AWS Service 
+    - Choose a use case: EC2 Instance
+    - IAMReadOnlyAccess
+
+### IAM Security Tools
+
+- IAM Credentials Report (account-level)
+  - a report that lists all your account's users and the status of their various credentials
+- IAM Access Advisor (user-level)
+  - Access advisor shows the service permissions granted to a user and when those services were last accessed
+  - You can use this information to revise your policies
+
+### IAM Security Tools Hands on
+
+- Credential report > Download Report
+- Users > ${username} > Access Advisor
+
+
+### IAM Best Practices
+
+- IAM Guidelines & Best Practices
+  - Don't use the root account except for AWS account setup
+  - One physical user = One AWS user
+  - Assign users to groups and assign permissions to groups
+  - Create a strong password policy
+  - Use and enforce the user of Multi Factory Authentication (MFA)
+  - Crate and user Roles for giving permissions to AWS services
+  - Use Access Keys for Promgrammatic Access (CLI/SDK)
+  - Audit permissions of your account with IAM Credenitals Report
+  - Never share IAM user & Access Keys
+
+### IAM Summary
+
+- IAM Section - Summary
+  - Users: mapped to a physical user, has a password for AWS Console
+  - Groups: contains users only
+  - Policies: JSON doucment that outlines permissions for users or groups
+  - Roles: for EC2 instances or AWS services
+  - Security: MFA + Password Policy
+  - Access Keys: access AWS using the CLI or SDK
+  - Audit: IAM Credential Reports & IAM Access Advisor
+
+## Budget
+
+- AWS Budget Setup
+  - My Account > IAM User and Role Access to Billing Information
+    - Activate IAM access (enabed)
+  - Billing > Bills
+  - Billing > Free tier
+  - Billing > Budgets
+    - Budget setup
+      - Use a template
+      - Customize
+    - Template - new
+      - Zero spend budget
+      - Monthly cost budget
+        - Enter your bedgeted amount ($)
+      - Daily savings Plans coverage budget
+
+
+## EC2 Section
+
+### EC2 Basics
+
+- EC2 is one of the most popular of AWS' offering
+- EC2 = Elastic Compute Cloud = Infrastructure as a Service
+- 
+
+### EC2 Basics
 
 - Instance Type
 - EC2 User Data
@@ -243,6 +308,7 @@
   - Stop Instance
   - Terminate Instance
   - Start Instance
+
 
 ## EC2 Instance Types
 
