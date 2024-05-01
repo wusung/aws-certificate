@@ -2154,3 +2154,260 @@ If things don't work...
       - High availability(using Spot and On-Demand instances)
       - Custom configuration
 
+
+## Amazon S3
+
+- Introduction
+  - Amazon S3 is one of the main building blocks of AWS
+  - It's advertised as "infinitely scaling" storage
+  - It's widely popular and deserves its own section
+
+  - Many websites use Amazon S3 as a backbone
+  - Many AWS services uses Amazon S3 as an integration as well
+
+
+- Amazon S3 Overvew - Buckets
+  - Amazon S3 allows people to store objects (files) in "buckets" (directories)
+  - Buckets must have a globally unique name
+  - Buckets are defined at the region level
+  - Naming convention
+    - No uppercase
+    - No underscore
+    - 3-63 characters long
+    - Not an IP
+    - Must start with lowercase letter or number
+
+- Amazon S3 Overvew - Objects
+  - Objects (files) have a Key
+  - The key is the FULL path
+    - s3://my-bucket/my_file.txt
+    - s3://my-bucket/my_folder/another_filder/my_file.txt
+  - The key is composed of prefix + object name
+    - s3://my-bucket/my_folder/another_name/my_file.txt
+  - There's no conecpt of "directories" within buckets (although the UI will trick you to think otherwise)
+  - Just keys with very long names that contain slashes ('/')
+
+- Amazon S3 Overvew - Objects (continued)
+  - Object values are the content of the body
+    - Max Object Size is 5TB (5000GB)
+    - If uploading more than 5GB, must use "multi-part upload"
+  - Metadata (list of text key/value pairs - system or use metadata)
+  - Tags (Unicode key/value pair - up to 10) - usefull for security / lifecycle
+  - Version ID (if versioning is enabled)
+
+- S3 Bucket Hands on
+  - Create bucket
+    - Region: eu-west-1
+    - Block all public access
+    - Bucket Versioning: Disable
+  - Upload file
+    - Add files
+    - Object actions > Open (Presigned URL)
+      ![alt text](image-116.png)
+    - Object URL
+  - Create folder
+    - Add files
+  - Delete objects
+
+- S3 Versioning
+  - You can version your files in Amazon S3
+  - It is enabled at the bucket level
+  - Same key overwrite will increment the "version": 1,2,3...
+  - It is best practice to version your buckets
+    - Protect against unintended deletes (ability to restore a version)
+    - Easy roll back to previous version
+  - Notes
+    - Any file that is not versioned prior to enabling versioning will have version "null"
+    - Suspending versioning does not delete the previous versions
+
+- S3 Versioning Hands on
+  - Bucket > Properties
+    - Bucket Versioning: Enable
+  - List versions
+  - Delete objects
+    - Type: Delte marker
+    ![alt text](image-117.png)
+  - Retore an object
+    - Delete the delete marker
+
+- S3 Encryption for Ojbects
+  - There are 4 methods of encrypting object in S3
+    - SSE-S3: encrypt S3 object using keyss handled & managed by AWS
+    - SSE-KMS: leverage AWS Key Management Service to manage encryption keys
+    - SSE-C: when you want to manage yor own encryption keys
+    - Client Side Encryption
+  - It's important to understand which ones are adapted to which situation for the exam
+
+- SSE-S3
+  - SSE-S3: encrption using keys handled & maanged by Amazon S3
+  - Object is encrypted server side
+  - AES-256 encrption type
+  - Must set header: "x-amz-server-side-encrption": "ASE256"
+  ![alt text](image-118.png)
+    
+- SSE-KMS
+  ![alt text](image-119.png)
+  - SSE-KMS: encryption using keys handled & managed by KMS
+  - KMS Advantages: user control + audit trail
+  - Object is encrypted server side
+  - Must set header: "x-amz-server-side-encryption":"aws:kms"
+
+- SSE-C
+  ![alt text](image-120.png)
+  - SSE-C: server-side encryption using data keys fully maanged by the customer outside of AWS
+  - Amazon S3 does not store the encrption key you provide
+  - HTTPS must be used
+  - Encrytion key must provided in HTTP headers, for every HTTP request mode
+
+- Client Side Encryption
+  ![alt text](image-121.png)
+  - Client library such as the Amazon S3 Encryption Client
+  - Client must encrypt data themselves before sending to S3
+  - Client must decrypt data themselves before retrieving S3
+  - Customer fully manages the kys and encryption cycle
+
+- Encryption in transit (SSL/TLS)
+  - Amazon S3 exposes
+    - HTTP endpoint: non encrypted
+    - HTTPS endpoint: encryption in flight
+  - You're free to use the endpoint you want, but HTTPS is recommended
+  - Most clients would use the HTTPS endpoint by default
+
+  - HTTPS is mandatory for SSE-C
+  - Encryption in flight is also called SSL/TLS
+
+- S3 Encryption - Hands on
+  - Server-side encryption settings
+    - Server-side encryption: Enable
+    - Encryption key type
+      - Amazon S3 key (SSE-S3)
+      - AWS Key Management Service by key (SSE-KMS)
+        - AWS KMS key
+          - AWS managed key (aws/s3)
+          - Cloose from you KMS master kerys
+          - Enter KMS master by ARN
+
+  - Bucket
+    - Default encryption
+      - Encryption key type
+  - For a File
+    - Encryption settings
+      - Use defualt encryption bucket settings
+      - Override defult encryption bucket settings
+        - Encryption key type
+
+- S3 Security
+  - User based
+    - IAM policies - which API calls should be allowed for a specific user from IAM console
+  - Resource Based
+    - Bucket Policies - bucket wide rules from the S3 console - allows cross account
+    - Object Access Control List (ACL) - finer gran
+    - Bucket Access Control List (ACL) - less common
+  - Note: an IAM principal can access an S3 object if
+    - the user IAM permissions allow it OR the resource policy ALLOWS it
+    - AND there's no explicit DENY
+
+- S3 Bucket Policies
+  ![alt text](image-122.png)
+  - JSON based policies
+    - Resources: buckets and objects
+    - Actions: Set of API to Allow or Deny
+    - Effect: Allow/Deny
+    - Principal: The account or user to apploy the policy to
+  - Use S3 bucket for policy to
+    - Grant public access to the bucket
+    - Force objects to be encrypted at upload
+    - Grant access to another account (Cross Account)
+
+- Bucket settings for Block Public Access
+  - Block public access to buckets and objects granted through
+    - new access control lists (ACLs)
+    - any access control lists (ACLs)
+    - new public bucket or access point policies
+  - Block public and cross-account access to buckets and objects through any public bucket or access point policies
+  
+  - These settings are created to prevent comapny data leaks
+  - If you know your bucket should never be public, leave these on
+  - Can be set at the account level
+
+- S3 Security - Other
+  - Networking
+    - Supports VPC Endpoints (for instances in VPC without www internet)
+  - Logging and Audit
+    - S3 Access Logs can be stored in other S3 bucket
+    - API calls can be logged in AWS CloudTrail
+  - User Security
+    - MFA Delete: MFA (multi factor authentication) can be required in versioned buckets to delete objects
+    - Pre-Signed URLs: URLs that are valid only for a limited time (ex: premium video service for logged in users)
+
+- S3 Bucket Policies - Hands on
+  - Bucket policy
+    - AWS Policy Generator
+      - Step 1: Select Policy Type
+        - Select Type of Policy: S3 Bucket Policy
+      - Step 2: Add Statement(s)
+        - Effect
+          - Allow
+          - Deny
+        - Principal: *
+        - AWS Service: Amazon S3
+        - Actions: Put Object
+        - ARN
+      - Add Conditions  (Optional)
+        - Condition: Null
+        - Key: s3-x-amz-server-side-encryption
+        - Value: true
+
+      - Step 1: Select Policy Type
+        - Select Type of Policy: S3 Bucket Policy
+      - Step 2: Add Statement(s)
+        - Effect
+          - Allow
+          - Deny
+        - Principal: *
+        - AWS Service: Amazon S3
+        - Actions: Put Object
+        - ARN: ${BUCKET_ARN}/*
+      - Add Conditions  (Optional)
+        - Condition: StringNotRequals
+        - Key: s3-x-amz-server-side-encryption
+        - Value: AES256
+
+- S3 Websites
+  - S3 Websites
+    - S3 can host static websites and have accessible on the www
+    - The website URL will be
+      - <bucket-name>.s3-website-<AWS-region>.amazonaws.com
+    - If you get a 403 (Forbidden) error, make sure the bucket policy allows public read!
+
+  - Hands on
+    - Upload index.html/error.html to the bucket
+    - In the properties tab of the bucket
+      - Edit static website hosting
+        - Static website hosting: Enable
+        - Hosting type
+          - Host a static website
+          - Redirect requests for an object
+      - Index document: index.html
+      - Error document: error.html
+
+    - Permission
+      - Block all public access: uncheck
+      - Bucket policy
+        - Select Type of Policy: S3 Bucket Policy
+        - Effect: Allow
+        - Principal: *
+        - AWS Service: Amazon S3
+        - Actions: Get Objects
+        - ARN: <bucket-name>/*
+
+- S3 CORS - Explained
+  - An origin is a schema (protocol), host(domain) and port
+    - E.g.: https://www.example.com (implied port is 443 for HTTPS, 80 for HTTP)
+  - CORS means Corss-Origin Resource Sharing
+  - Web Browser based mechanism to allow requests to other origins while visiting the main origin
+  - Same origin: https://example.com/app1 & https://example.com/app2
+  - Different origin: https://www.example.com & https://www.other.com
+  - The requests won't be fulfilled unless the other origin allows for the requests, using CORS Headers (ex: Access-Control-Allow-Origin)
+
+- S3 CORS - Diagram
