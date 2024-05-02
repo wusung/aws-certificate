@@ -664,6 +664,41 @@ If things don't work...
 - Load EC2 Instance Store
   ![alt text](image-13.png)
 
+## AWS EC2 Instance Metadata
+
+- AWS EC2 Instance Metadata
+  - AWS EC2 Instance Metadata is powerful but one of the least known features to developers
+  - It allows AWS EC2 instances to "learn about themselves" without using an IAM Role for that purpose
+  - The URL is http://169.254.169.254/latest/meta-data
+  - You can retrieve the IAM Role name from the metadata, but you CANNOT retrieve the IAM Policy
+  - Metadata = Info about the EC2 instance
+  - Userdata = launch script of the EC2 instance
+
+  ```
+  curl http://169.254.169.254/latest/meta-data
+  ```
+
+## AWS SDK Overview
+
+- AWS SDK Overview
+  - What if you want ot perform actions on AWS directly from your applications code> (without using the CLI)
+  - You can use an SDK (software development kit)
+  - Official SDKs are
+    - Java
+    - .NET
+    - Node.js
+    - PHP
+    - Python
+    - Go
+    - Ruby
+    - C++
+
+  - We hav to use the AWS SDK when coding against AWS Services such as DynamoDB
+  - The AWS CLI uses Python SDK
+  - The exam expects you to know when you should use an SDK
+  - We'll practice the AWS SDK when we get to the Lambda functions
+  - If you don't specify or configure a default region, then us-east-1 will be chosen by default
+
 ## EBS
 - EBS Volume Types
   - EBS Volumes come in 6 types
@@ -2411,3 +2446,80 @@ If things don't work...
   - The requests won't be fulfilled unless the other origin allows for the requests, using CORS Headers (ex: Access-Control-Allow-Origin)
 
 - S3 CORS - Diagram
+  ![alt text](image-123.png)
+
+- S3 CORS - Diagram
+  - If a client does a cross-origin request on our S3 bucket, we need to enable the correct CORS headers
+  - It's a popular exam question
+  - You can allow for a specific origin or for * (all origins)
+  ![alt text](image-124.png)
+
+- S3 CORS - Hands on
+  - In the same bucket
+  - In the different buckets
+    - Permission > CORS
+      ```
+      [
+        {
+          "AllowedHeaders": {
+
+          },
+          "AllowedMethods": {
+
+          },
+          "AllowedOrigins": {
+
+          }
+        }
+      ]
+      ```
+
+- S3 Consistency Model
+  - Strong consistency as of December 2020
+  - After a:
+    - successful write of a new object (new PUT)
+    - or an overwrite or delete of an existing object (overwrite PUT or DELETE)
+  - ...any:
+    - subsequent read request immediately receives the latest verson of the object (read after write consistency)
+    - subsequent list request immediately reflects changes (list consistency)
+  - Available at no additional cost, without any performance impact
+
+- IAM Roles and Policies - Hands on
+  - Create policy
+    ```
+    {
+      "Statement": {
+        "Effect": "Allow",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::<bucket-name>/*"
+      }
+    }
+    ```
+- AWS Policy Simulator
+  - Users, Groups, and Roles
+  - Policy Simualtor
+    - Amazon S3
+    - Action(s): PutObject
+
+- S3 MFA-Delete
+  - MFA (multi factor authentication) forces user to generate a code on a device (usually a mobile phone or hardware) before doing important operations on S3
+  
+  - To use MFA-Delete, enable Versioning on the S3 bucket
+  - You will need MFA to
+    - permanenetly delete an object version
+    - suspend versioning on the bucket
+  - You won't need MFA for
+    - enabling versioning
+    - listing deleted versons
+  
+  - Only the bucket owner (root account) can enable/disable MFA-Delete
+  - MFA-Delete currently can only enabled using the CLI
+
+- S3 MFA-Delete - Hands on
+  - Edit Bucket Versioning
+    - Bucket Versioning: Enable
+    - MFA Delete
+      ```
+      aws s3api put-bucket-versioning --bucket <bucket-name> --versoning-configuration Status=Enabled,MFADelete=Enabled --mfa <mfa-device-arn>
+      ```
+
