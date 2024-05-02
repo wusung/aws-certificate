@@ -2523,3 +2523,23 @@ If things don't work...
       aws s3api put-bucket-versioning --bucket <bucket-name> --versoning-configuration Status=Enabled,MFADelete=Enabled --mfa <mfa-device-arn>
       ```
 
+- S3 Default Encryption vs bucket Policies
+  - One way to "force encryption" is to use a bucket policy and refuse any API call to PUT an S3 object without encription headers
+  ![alt text](image-125.png)
+  - Another way is to use the "default encryption" option in S3
+  - Note: Bucket Policies are evaluated before "default encryption"
+  - Hands on
+    - Bucket > Properties
+      - Default encryption
+        - Server-side encryption: Enable
+        - Encryption key type: Amazon S3 key (SSE-S3)
+    - Upload file
+      - Server-side encryption settings
+        - Server-side encryption
+          - Do not specify an encryption key
+          - Specify an encryption key
+        - Encryption settings
+          - Use default encryption bucket settings
+          - Override default encryption bucket settings
+     
+
