@@ -2563,4 +2563,201 @@ If things don't work...
     - Properties > Server access logging
       - Server access logging: Enable
       - Target bucket
+
+
+- S3 Replicaton (CRR & SRR)
+  - Must enable versioning in source and destination
+  - Cross Region Replication (CRR)
+  - Same Region Replicaton (SRR)
+  - Bucket can be in different accounts
+  - Copying is asynchronous
+  - Must give proper IAM permission to S3
+
+  - CRR - Use cases: compliance, lower latency access, replicaton across accounts
+  - SRR - Use cases: log aggregation, live replication between production and test accounts
+  ![alt text](image-128.png)
+
+- S3 Replicaton - Notes
+  - After activating, only new objects are replicated (not retroactive)
+  - For DELETE operations
+    - Can replicate delete markers from source to target (optinal setting)
+    - Deleting with a version ID are not replicated (to avoid malicious deletes)
+  - There is no "chaining" of replication 
+    - If bucket 1 has replication into bucket 2, which has replication into bucket 3
+    - Then objects created in bucket 1 are not replicated to bucket 3
+
+- S3 Replication - Hands on
+  - Bucket Versioning: Enable
+  - Management > Replication Rule
+    - Create role
+      - Status: Enabled
+      - Source bucket
+        - Choose a rule scope
+          - Limit the scope of this rule using one or more filters
+          - This rule applies to all objects in the bucket
+      - Destination
+        - Choose a bucket in this account
+        - Specify a bucket in another account
+        - Bucket name
+      - IAM role
+      - Add replication options
+        ![alt text](image-129.png)
+
+- S3 pre-signed URLs
+  - Can generate pre-signed URLs using SDK or CLI
+    - For downloads (easy, can use the CLI)
+    - For uploads (harder, must use the SDK)
+  - Valid for a default of 3600 seconds, can change timeout with --expires-in[TIME_BY_SECONDS] argument
+  - Users given a pre-signed URL inherit the permissions of the person who generated the URL for GET/PUT
+
+  - Examples:
+    - Allows only logged-in users to download a premium video on your S3 bucket
+    - Allow an ever changing list of users to download files by generating URLs dynamically
+    - Allow temporarily a user to upload a file to precise location in our bucket
+
+- S3 pre-signed URLs - Hands on
+  - CLI
+    ```
+    aws s3 presign s3://<bucket-name>/<object-name> --region eu-west-1 --expires-in 300
+
+    # set the proper signature version in order not to get issues when generating URLs for encrypted files
+    aws configure set default.s3.signature_version s3v4
+
+
+### S3 Storage
+
+- S3 Storage Classes
+  - Amazon S3 Standard - General Purpose
+  - Amazon S3 Standard-Infrequent Access (IA)
+  - Amazon S3 One Zone-Infrequent Access
+  - Amazon S3 Intelligent Tiering
+  - Amazon Glacier
+  - Amazon Glacier Deep Archive
+  - Amazon S3 Reduced Redundancy Storage (deprecated -omitted)
     
+  ![alt text](image-130.png)
+  https://aws.amazon.com/s3/storage-classes/
+
+- Amazon S3 Standard - General Purpose
+  - High durability (99.999999999%) of objects across multiple AZ
+  - If you store (10,000,000) objects with Amazon S3, you can on average expect to incur a loss of a simple object once every 10,000 years
+  - 99.99% Availability over a given year
+  - Sustain 2 concurrent facility failures
+  - Use Cases: Big Data analytics, mobile & gaming applications, content distribution
+
+- Amazon S3 Standard - Infrequent Access (IA)
+  - Suitable for data that is less frequently accessed, but requires rapid access when needed
+  - High durability (99.999999999%) of objects across multiple AZs
+  - 99.9 Availability
+  - Low ocst compared to Amazon S3 Stardard
+  - Sustain 2 concurrent facility failures
+  - Use Cases: As a data store for disaster recovery, backups...
+
+- S3 One Zone - Infrequent Access (IA)
+  - Same as IA but data is stored in a single AZ
+  - High durability (99.999999999%) of objects in a single AZ; data lost when AZ is destroyed
+  - 99.5 % Availability
+  - Low Latency and high throughput performance
+  - Supports SSL for data at transit and encryption at rest
+  - Low ost compared to IA (by 20%)
+  - Use Cases: Storing secondary backup copies of on-premise data, or storing data you can recreate
+
+- S3 Intelligent Tiering
+  - Same low latency and high thoughput performance of S3 Standard
+  - Small monthly monitoring and auto-tiering free
+  - Automatically moves objects between two access tiers based on chaning access patterns
+  - Designed for durability of 99.999999999% of objects across multiple Availability Zones
+  - Resilient againt events that impact an entire Availability Zone
+  - Designed for 99.9 avaliability over a given year
+
+- S3 Glacier
+  - Low cost object storage meant for archiving / backup
+  - Data is retained for the longer term (10s of years)
+  - Alternative to on-premise magnetic tape storage
+  - Average annual durability is 99.999999999%
+  - Cost per storage per month ($0.004 / GB) + retrieval cost
+  - Each item in Glacier is called "Archive" (up to 40TB)
+  - Archives are stored in "Vaults"
+
+- Amason Glacier & Glacier Deep Archive
+  - Amason Glacier - 3 retrieval options
+    - Expedited (1 to 5 minutes)
+    - Standard (3 to 5 hours)
+    - Bulk (5 to 12 hours)
+    - Minimum storage duration of 90 days
+  - Amazon Glacier Deep Archive - for long term storage - cheaper
+    - Standard (12 hours)
+    - Bulk (48 hours)
+    - Minimum storage duration of 180 days
+
+- S3 Storage Classes - Price Comparison
+  ![alt text](image-131.png)
+
+- S3 Storage Classes - Hands on
+  - Create bucket
+    - Upload
+      - Storage class
+        - Standard-IA
+        - One Zone-IA
+        - Reduced redundancy
+        - Intelligent-Tiering
+        - Glacier
+        - Glacier Deep Archive
+      
+      - Initiate restore
+        - Restore objects from Glacier
+          - Retrieval tier
+            - Bulck retrieval
+            - Standard retrieval
+            - Expedited retrieval
+
+- S3 - Moving between storage classes
+  ![alt text](image-132.png)
+  - You can transition objects between storage classes
+  - For infrequently accessed object, move them to STANDARD_IA
+  - For archive objects you don't need in real-time, GLACIER or DEEP_ARCHIVE
+  - Moving objects can be automated using a lifecycle configuration
+
+- S3 Lifecycle Rules
+  - Transition actions: It defines when objects sare transitioned to another storage class
+    - Move objects to Standard IA class 60 days after creation
+    - Move to Glacier for archiving after 6 months
+  - Expiration actions: configure objects to expire (delete) after some time
+    - Access log files can be set to delete after 365 days
+    - Can be used to delete old versions of files (if versioning is enabled)
+    - Can be used to delete incomplete multi-part uploads
+  - Rules can be created for a certain prefix (ex - s3://mybucketmp3/*)
+  - Rules can be created for certain objects tags (ex - Department: Finance)
+
+- S3 Lifecycle Rules - Scenario 1
+  - Your application on EC2 creates images thumbnails after profile photos are uploaded to Amazon S3. These thumbnails can be easily recreated and only need to be kept for 45 days. The source images should be able to be immediately retrieved for these 45 days, and afterwards, the user can wait up to 6 hours. How would your design this?
+    - S3 source images can be on STANDARD, with a lifecycle configuration to transition them to GLACIER after 45 days
+    - S3 thumbnails can be on ONEZONE_IA, with a lifecycle configuration to expire them (delete them) after 45 days
+
+- S3 Lifecycle Rules - Scenario 2
+  - A rule in your company states that your should be able to recover your deleted S3 objects immediately for 15 days, although this may happen rarely. After this time, and for up to 365 days, deleted objects should be recoverable within 48 hours
+    - You need to enable S3 versioning in order to have object versions, so that "deleted objects" are in fact hidden by a "delete marker" and can be recovered
+    - You can transition these "noncurrent versions" of the object to S3_IA
+    - You can transition afterwards these "nocurrent versions" to DEEP_ARCHIVE
+
+- S3 Lifecycle Rules - Hands on
+  - Create lifecyle rule
+    - Lifecyle rule actions
+      - Transition current versions of objects between storage classes
+      - Transition previous versions of objects between storage classes
+      - Expires current versions of objects
+        ![alt text](image-134.png)
+      - Permanently delete previous versions of objects
+      - Delete expired markers or incomplete multipart uploads
+
+    - Transision current version of objects between storage classes
+      ![alt text](image-133.png)
+
+- S3 Analytics - Storage Class Analysis
+  - You can setup S3 Analytics to help determine when to transition objects from Standard to Stardard_IA
+  - Does not work for ONEZONE_IA or GLACIER
+  - Report is updated daily
+  - Takes about 24h to 48 hours to first start
+  - Good first steop to put together Lifecycle Rules (or improve them)
+
+
