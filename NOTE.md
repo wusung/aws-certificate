@@ -2760,4 +2760,32 @@ If things don't work...
   - Takes about 24h to 48 hours to first start
   - Good first steop to put together Lifecycle Rules (or improve them)
 
+- S3 - KMS Limitation
+  - If you use SSE-KMS, you may be impacted by the KMS limits
+  - When you upload, it calls the GenerateDayKey KMS API
+  - When you download, it calls the Decrypt KMS API
+  - Count towards the KMS quota per second (550, 10000, 30000 req/s based on region)
+  - You can request a quota increase using the Service Quotas Console
+  ![alt text](image-135.png)
 
+- S3 Performance
+  - Multi-Part upload
+    - recommended for files > 100MB, must use for files > 5GB
+    - Can help parallelize uploads (speed up transfers)
+    ![alt text](image-136.png)
+  - S3 Transfer Acceleration
+    - Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region
+    - Compatible with multi-part upload
+    ![alt text](image-137.png)
+
+- S3 Performance - S3 Byte-Range Fetches
+  - Parallelize GETs by requesting specific byte ranges
+  - Better resilience in case of failures
+
+  - Can be used to speed up downloads
+    ![alt text](image-138.png)
+  - Can be used to retrieve only partial data (for example the head of a file)
+    ![alt text](image-139.png)
+
+- S3 Select & Glacier Select
+  
