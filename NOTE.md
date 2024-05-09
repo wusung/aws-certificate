@@ -2823,4 +2823,11 @@ If things don't work...
           ![alt text](image-144.png)
         - Destination
           ![alt text](image-145.png)
-  
+
+- S3 - Requester pays
+  - In general, bucket owners pay for all Amazon S3 storage and data transfer cosnts associated with their bucket
+  - With Requester Pays buckets, the requester instead of the bucket owner pays ths cost of the request and the data download from the bucket
+  - Helpful when you want to share large datasets with other accounts
+  - The requester must be authenticated in AWS (cannot be anonymous)
+  ![alt text](image-146.png)
+
