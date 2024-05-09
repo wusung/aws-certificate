@@ -2793,3 +2793,34 @@ If things don't work...
   - Less network transfer, less CPU cost client-side
   ![alt text](image-140.png)
 
+- S3 Event Notifications
+  - S3:ObjectCreated, S3:ObjectRemoved, S3:ObjectRestore, S3:Replication
+  - Object name filtering possible (*.jpg)
+  - Use case: generate thumbnails of images uploaded to S3
+  - Can create as manay "S3 events" as desired
+  - S3 event notifications typically deliver events in seconds but can sometimgs take a minute or longer
+  - If two writes are made to a single non-versioned object at the same time, it is possible that only a single event notification will be sent
+  - If you want to ensure that an event notification is sent for every successful write, you ca enable versioning on your bucket
+  ![alt text](image-142.png)
+
+- S3 Event Notifications - Hands on
+  - Create queue
+    ```
+      ...
+      "Action": {
+        "sqs:SendMessage"
+      },
+      "Resoruce": "<SQS ARN>"
+      ...
+
+    ```
+
+  - Create bucket
+    - Properties > Event notifications
+      - Create event notification
+        - Event types
+          ![alt text](image-143.png)
+          ![alt text](image-144.png)
+        - Destination
+          ![alt text](image-145.png)
+  
