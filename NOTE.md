@@ -2788,4 +2788,8 @@ If things don't work...
     ![alt text](image-139.png)
 
 - S3 Select & Glacier Select
-  
+  - Retrieve less data using SQL by performing server side filterring
+  - Can filter by rows & columns (simple SQL statements)
+  - Less network transfer, less CPU cost client-side
+  ![alt text](image-140.png)
+
