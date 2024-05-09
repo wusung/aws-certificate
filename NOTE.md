@@ -2869,3 +2869,60 @@ If things don't work...
   - Modes
     - Governance mode: users can't overwrite or delete an object version or alter its lock settings unless they have special permissions
     - Compliance mode: a pertected object version can't be overwritten or deleted by any user, including the root user in your AWS account. When an object is locked in compliance mode, its retention mode can't be changed, and its retention period can't be shortened.
+
+
+## AWS CloudFront Overview
+
+- AWS CloudFront
+  - Content Delivery Network (CDN)
+  - Inproves read performance, content is cached at the edge
+  - 216 Point of Presence globally (edge locations)
+  - DDoS protection, integration with Shield, AWS Web Application Firewall
+  - Can expose external HTTPS and can talk to internal HTTPS backends
+  ![alt text](image-149.png)
+
+- CloudFron - Origins
+  - S3 bucket
+    - For distributing files and caching them at the edge
+    - Enhanced security with CloudFront Origin Access Identity (OAI)
+    - CloudFront can be used as an ingress (to upload files to S3)
+  - Custom Orign (HTTP)
+    - Application Load Balancer
+    - EC2 instance
+    - S3 website (must first enable the bucket as a static S3 website)
+    - Any HTTP backend you want
+
+- CloudFront at a high level
+  ![alt text](image-150.png)
+
+- CloudFront - S3 as an Origin
+  ![alt text](image-151.png)  
+
+- CloudFront - ALB or EC2 as an origin
+  ![alt text](image-152.png)
+
+- CloudFront Geo Restriction
+  - You can restrict who can access your distribution
+    - Whitelist
+    - Blacklist
+  - The "country" is determined using a 3rd party Geo-IP database
+  - Use case: Copyright Laws to control access to content
+
+- CloudFront vs S3 Cross region Replication
+  - CloudFront
+    - Global Edge network
+    - Files are cached for a TTL (maybe a day)
+    - Great for static content that must be available everywhere
+  - S3 Cross Region Replication
+    - Must be setup for each region you want replication to happe
+    - Files are updated in near real-time
+    - Read Only
+    - Great for dynamic content that needs to be available at low-latency in few regions
+
+- CloudFront with S3 - Hands on
+  - Create bucket
+  - Create distribution
+    - Origin domain
+      ![alt text](image-153.png)
+    - S3 bucket access
+      ![alt text](image-154.png)
